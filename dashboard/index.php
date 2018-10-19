@@ -242,10 +242,10 @@ if (isset($_SESSION['email'])){
 								echo "<div class=\"container p-3 mb-2 bg-dark text-white\">\n"; 
 								echo "    <div class=\"row\">\n"; 
 								echo "        <div class=\"col-sm-12\">"; 
-
+								echo "<form>";
 								echo "  <div class=\"form-group\">\n"; 
 								echo "    <label for=\"exampleFormControlFile1\">Monto: </label>\n"; 
-								echo "<input class=\"form-control form-control-lg\" type=\"text\" placeholder=\"$ 500\">\n"; 
+								echo "<input class=\"form-control form-control-lg\" type=\"number\" placeholder=\"$ 500\" required>\n"; 
 								echo "  </div>\n";
 								echo "</div>\n"; 
 								echo "    </div>\n"; 
@@ -257,20 +257,20 @@ if (isset($_SESSION['email'])){
 								echo "        <div class=\"col-sm-12\">";
 								echo "<div class=\"form-group\">\n"; 
 								echo "    <label for=\"formGroupExampleInput\">Numero de tarjeta:</label>\n"; 
-								echo "    <input type=\"text\" class=\"form-control\" id=\"monto\" onkeyup=\"monto()\" placeholder=\"XXXX XXXX XXXX XXXX\">\n"; 
+								echo "    <input type=\"number\" class=\"form-control\" id=\"monto\" placeholder=\"XXXX XXXX XXXX XXXX\" required>\n"; 
 								echo "  </div>\n";
 								echo "</div>\n"; 
 								echo "        <div class=\"col-sm-12\">"; 
 								echo "<div class=\"form-group\">\n"; 
 								echo "    <label for=\"formGroupExampleInput\">Nombre que aparece en tarjeta:</label>\n"; 
-								echo "    <input type=\"text\" class=\"form-control\" id=\"formGroupExampleInput\" placeholder=\"ej. ANTONIO STARK\">\n"; 
+								echo "    <input type=\"text\" class=\"form-control\" id=\"formGroupExampleInput\" placeholder=\"ej. ANTONIO STARK\" required>\n"; 
 								echo "  </div>\n";
 								echo "</div>\n"; 
 								echo "        <div class=\"col-sm-8\">"; 
 								echo "<div class=\"row\">\n"; 
 								echo "    <div class=\"col\">\n"; 
 								echo "    <label for=\"formGroupExampleInput\">Fecha expiracion:</label>\n"; 
-								echo "      <select id=\"inputState\" class=\"form-control\">\n"; 
+								echo "      <select id=\"inputState\" class=\"form-control\" required>\n"; 
 								echo "    <option value=''>Mes</option>\n"; 
 								echo "    <option value='01'>01 - Enero</option>\n"; 
 								echo "    <option value='02'>02 - Febrero</option>\n"; 
@@ -288,7 +288,7 @@ if (isset($_SESSION['email'])){
 								echo "    </div>\n"; 
 								echo "    <div class=\"col\">\n"; 
 								echo "    <label for=\"formGroupExampleInput\">&nbsp;</label>\n"; 
-								echo "      <select id=\"inputState\" class=\"form-control\">\n"; 
+								echo "      <select id=\"inputState\" class=\"form-control\" required>\n"; 
 								echo "    <option value=''>Año</option>\n"; 
 								echo "    <option value='2012'>2012</option>\n"; 
 								echo "    <option value='2013'>2013</option>\n"; 
@@ -316,7 +316,7 @@ if (isset($_SESSION['email'])){
 								echo "    <span class=\"fas fa-question-circle\"></span>\n"; 
 								echo "  </a>\n";
 								echo "</label>\n"; 
-								echo "      <input type=\"text\" class=\"form-control\" placeholder=\"481\">\n"; 
+								echo "      <input type=\"number\" class=\"form-control\" placeholder=\"481\" required>\n"; 
 								echo "    </div>\n"; 
 								echo "</div>\n";
 								echo "</div>\n"; 
@@ -328,9 +328,10 @@ if (isset($_SESSION['email'])){
 								echo "      <!-- Modal footer -->\n"; 
 								echo "      <div class=\"modal-footer\">\n";
 								echo "<a href=\"#exampleModal\" data-toggle=\"modal\" class=\"btn btn-info\" data-dismiss=\"modal\">< Atras</a>\n"; 
-								echo "        <button type=\"button\" id=\"btn_pay\" class=\"btn btn-success\">Finalizar</button>\n"; 
+								
+								echo "        <input type=\"submit\" value=\"Finalizar\" class=\"btn btn-success\">\n"; 
 								echo "      </div>\n"; 
-								echo "\n"; 
+								echo "</form>";
 								echo "    </div>\n"; 
 								echo "  </div>\n"; 
 								echo "</div>\n";
