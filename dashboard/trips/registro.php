@@ -37,67 +37,76 @@ if ($conn->query($sql) === TRUE) {
 	if ($result2->num_rows > 0) {
 	    // output data of each row
 	    while($row2 = $result2->fetch_assoc()) {
-	        if ($count == '1') {
-	        	$sql3 = "INSERT INTO paquetes (id_viaje, fecha_ida, fecha_regreso, detalles, precio, moneda)
-				VALUES ('".$row2["id_viaje"]."', '".$ida1."', '".$regreso1."','".$detalles1."','".$precio1."','".$moneda."')";
+			$estructura = '../../trips/'.$row2['id_viaje'].'/';
 
-				if ($conn->query($sql3) === TRUE) {
-				    echo ("<SCRIPT LANGUAGE='JavaScript'>
-				   
-				    window.location.href='../trips/';
-				    </SCRIPT>");
-				} else {
-				    echo ("<SCRIPT LANGUAGE='JavaScript'>
-				    window.alert('Por favor intentalo de nuevo mas tarde. ayuda@agustirri.com')
-				    window.location.href='../trips/';
-				    </SCRIPT>");
-				}
-	        }elseif ($count == '2') {
-	        	$sql3 = "INSERT INTO paquetes (id_viaje, fecha_ida, fecha_regreso, detalles, precio, moneda)
-				VALUES ('".$row2["id_viaje"]."', '".$ida1."', '".$regreso1."','".$detalles1."','".$precio1."','".$moneda."'), ('".$row2["id_viaje"]."', '".$ida2."', '".$regreso2."','".$detalles2."','".$precio2."','".$moneda."')";
+			if(mkdir($estructura, 0777, true)) {
+				if(mkdir('../../trips/'.$row2['id_viaje'].'/principal/', 0777, true)) {
+			    	copy('../../trips/default_principal.png', '../../trips/'.$row2['id_viaje'].'/principal/default_principal.png');
+			    	copy('../../trips/index.php', '../../trips/'.$row2['id_viaje'].'/principal/index.php');
+			    	copy('../../trips/index.php', '../../trips/'.$row2['id_viaje'].'/index.php');
+			    	if ($count == '1') {
+			        	$sql3 = "INSERT INTO paquetes (id_viaje, fecha_ida, fecha_vuelta, incluido, precio, moneda)
+						VALUES ('".$row2["id_viaje"]."', '".$ida1."', '".$regreso1."','".$detalles1."','".$precio1."','".$moneda."')";
 
-				if ($conn->query($sql3) === TRUE) {
-				    echo ("<SCRIPT LANGUAGE='JavaScript'>
-				   
-				    window.location.href='../trips/';
-				    </SCRIPT>");
-				} else {
-				    echo ("<SCRIPT LANGUAGE='JavaScript'>
-				    window.alert('Por favor intentalo de nuevo mas tarde. ayuda@agustirri.com')
-				    window.location.href='../trips/';
-				    </SCRIPT>");
-				}
-	        }elseif($count == '3'){
-				$sql3 = "INSERT INTO paquetes (id_viaje, fecha_ida, fecha_regreso, detalles, precio, moneda)
-				VALUES ('".$row2["id_viaje"]."', '".$ida1."', '".$regreso1."','".$detalles1."','".$precio1."','".$moneda."'), ('".$row2["id_viaje"]."', '".$ida2."', '".$regreso2."','".$detalles2."','".$precio2."','".$moneda."'), ('".$row2["id_viaje"]."', '".$ida3."', '".$regreso3."','".$detalles3."','".$precio3."','".$moneda."')";
+						if ($conn->query($sql3) === TRUE) {
+						    echo ("<SCRIPT LANGUAGE='JavaScript'>
+						   
+						    window.location.href='../trips/';
+						    </SCRIPT>");
+						} else {
+						    echo ("<SCRIPT LANGUAGE='JavaScript'>
+						    window.alert('Por favor intentalo de nuevo mas tarde. ayuda@agustirri.com')
+						    window.location.href='../trips/';
+						    </SCRIPT>");
+						}
+			        }elseif ($count == '2') {
+			        	$sql3 = "INSERT INTO paquetes (id_viaje, fecha_ida, fecha_vuelta, incluido, precio, moneda)
+						VALUES ('".$row2["id_viaje"]."', '".$ida1."', '".$regreso1."','".$detalles1."','".$precio1."','".$moneda."'), ('".$row2["id_viaje"]."', '".$ida2."', '".$regreso2."','".$detalles2."','".$precio2."','".$moneda."')";
 
-				if ($conn->query($sql3) === TRUE) {
-				    echo ("<SCRIPT LANGUAGE='JavaScript'>
-				   
-				    window.location.href='../trips/';
-				    </SCRIPT>");
-				} else {
-				    echo ("<SCRIPT LANGUAGE='JavaScript'>
-				    window.alert('Por favor intentalo de nuevo mas tarde. ayuda@agustirri.com')
-				    window.location.href='../trips/';
-				    </SCRIPT>");
-				}
-	        }elseif ($count == '4') {
-	        	$sql3 = "INSERT INTO paquetes (id_viaje, fecha_ida, fecha_regreso, detalles, precio, moneda)
-				VALUES ('".$row2["id_viaje"]."', '".$ida1."', '".$regreso1."','".$detalles1."','".$precio1."','".$moneda."'), ('".$row2["id_viaje"]."', '".$ida2."', '".$regreso2."','".$detalles2."','".$precio2."','".$moneda."'), ('".$row2["id_viaje"]."', '".$ida3."', '".$regreso3."','".$detalles3."','".$precio3."','".$moneda."'), ('".$row2["id_viaje"]."', '".$ida4."', '".$regreso4."','".$detalles4."','".$precio4."','".$moneda."')";
+						if ($conn->query($sql3) === TRUE) {
+						    echo ("<SCRIPT LANGUAGE='JavaScript'>
+						   
+						    window.location.href='../trips/';
+						    </SCRIPT>");
+						} else {
+						    echo ("<SCRIPT LANGUAGE='JavaScript'>
+						    window.alert('Por favor intentalo de nuevo mas tarde. ayuda@agustirri.com')
+						    window.location.href='../trips/';
+						    </SCRIPT>");
+						}
+			        }elseif($count == '3'){
+						$sql3 = "INSERT INTO paquetes (id_viaje, fecha_ida, fecha_vuelta, incluido, precio, moneda)
+						VALUES ('".$row2["id_viaje"]."', '".$ida1."', '".$regreso1."','".$detalles1."','".$precio1."','".$moneda."'), ('".$row2["id_viaje"]."', '".$ida2."', '".$regreso2."','".$detalles2."','".$precio2."','".$moneda."'), ('".$row2["id_viaje"]."', '".$ida3."', '".$regreso3."','".$detalles3."','".$precio3."','".$moneda."')";
 
-				if ($conn->query($sql3) === TRUE) {
-				    echo ("<SCRIPT LANGUAGE='JavaScript'>
-				   
-				    window.location.href='../trips/';
-				    </SCRIPT>");
-				} else {
-				    echo ("<SCRIPT LANGUAGE='JavaScript'>
-				    window.alert('Por favor intentalo de nuevo mas tarde. ayuda@agustirri.com')
-				    window.location.href='../trips/';
-				    </SCRIPT>");
+						if ($conn->query($sql3) === TRUE) {
+						    echo ("<SCRIPT LANGUAGE='JavaScript'>
+						   
+						    window.location.href='../trips/';
+						    </SCRIPT>");
+						} else {
+						    echo ("<SCRIPT LANGUAGE='JavaScript'>
+						    window.alert('Por favor intentalo de nuevo mas tarde. ayuda@agustirri.com')
+						    window.location.href='../trips/';
+						    </SCRIPT>");
+						}
+			        }elseif ($count == '4') {
+			        	$sql3 = "INSERT INTO paquetes (id_viaje, fecha_ida, fecha_vuelta, incluido, precio, moneda)
+						VALUES ('".$row2["id_viaje"]."', '".$ida1."', '".$regreso1."','".$detalles1."','".$precio1."','".$moneda."'), ('".$row2["id_viaje"]."', '".$ida2."', '".$regreso2."','".$detalles2."','".$precio2."','".$moneda."'), ('".$row2["id_viaje"]."', '".$ida3."', '".$regreso3."','".$detalles3."','".$precio3."','".$moneda."'), ('".$row2["id_viaje"]."', '".$ida4."', '".$regreso4."','".$detalles4."','".$precio4."','".$moneda."')";
+
+						if ($conn->query($sql3) === TRUE) {
+						    echo ("<SCRIPT LANGUAGE='JavaScript'>
+						   
+						    window.location.href='../trips/';
+						    </SCRIPT>");
+						} else {
+						    echo ("<SCRIPT LANGUAGE='JavaScript'>
+						    window.alert('Por favor intentalo de nuevo mas tarde. ayuda@agustirri.com')
+						    window.location.href='../trips/';
+						    </SCRIPT>");
+						}
+			        }
 				}
-	        }
+			}
 	    }
 	} else {
 	    echo "0 results";
@@ -105,7 +114,7 @@ if ($conn->query($sql) === TRUE) {
     
 } else {
     echo ("<SCRIPT LANGUAGE='JavaScript'>
-	    window.alert('Por favor intentalo de nuevo mas tarde. ayuda@agustirri.com')
+	    window.alert('truena primero')
 	    window.location.href='../trips/';
 	    </SCRIPT>");
 }

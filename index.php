@@ -20,7 +20,7 @@
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
-    <!-- Custom styles for this template -->
+    <!-- Custom styles for this  template -->
     <link href="css/agency.min.css" rel="stylesheet">
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
@@ -28,7 +28,7 @@
   </head>
 
   <body id="page-top">
-  
+
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
@@ -40,11 +40,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav text-uppercase ml-auto">
-           
+
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#portfolio">Viajes</a>
             </li>
-            
+
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="tuviaje/">Publica un viaje</a>
             </li>
@@ -53,20 +53,20 @@
 <?php
 session_start();
 if (isset($_SESSION['email'])){
-  echo " <a class=\"nav-link js-scroll-trigger\" href=\"dashboard/\" alt=\"Iniciar sesion\">\n"; 
-  echo "<span class=\"fas fa-user-astronaut fa-lg\" style=\"color:#f4d442\"></span>\n"; 
+  echo " <a class=\"nav-link js-scroll-trigger\" href=\"dashboard/\" alt=\"Iniciar sesion\">\n";
+  echo "<span class=\"fas fa-user-astronaut fa-lg\" style=\"color:#f4d442\"></span>\n";
   echo "</a>\n";
 }else{
-  echo " <a class=\"nav-link js-scroll-trigger\" href=\"sign-in/\" alt=\"Iniciar sesion\">\n"; 
-  echo "<span class=\"fas fa-user-astronaut fa-lg\"></span>\n"; 
+  echo " <a class=\"nav-link js-scroll-trigger\" href=\"sign-in/\" alt=\"Iniciar sesion\">\n";
+  echo "<span class=\"fas fa-user-astronaut fa-lg\"></span>\n";
   echo "</a>\n";
 }
 
 ?>
-             
+
 
             </li>
-           
+
           </ul>
         </div>
       </div>
@@ -89,7 +89,7 @@ if (isset($_SESSION['email'])){
         <div class="row">
           <div class="col-lg-12 text-center">
             <h2 class="section-heading text-uppercase">Asi de facil</h2>
-            
+
           </div>
         </div>
         <div class="row text-center">
@@ -133,6 +133,9 @@ if (isset($_SESSION['email'])){
           </div>
         </div>
         <div class="row">
+          <?php
+          require_once('dashboard/cn.php');
+          ?>
           <div class="col-md-4 col-sm-6 portfolio-item">
             <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
               <div class="portfolio-hover">
@@ -221,7 +224,7 @@ if (isset($_SESSION['email'])){
       </div>
     </section>
 
-    <!-- About 
+    <!-- About
     <section id="about">
       <div class="container">
         <div class="row">
@@ -302,7 +305,7 @@ if (isset($_SESSION['email'])){
       </div>
     </section>
 
-    <!-- Team 
+    <!-- Team
     <section class="bg-light" id="team">
       <div class="container">
         <div class="row">
@@ -317,7 +320,7 @@ if (isset($_SESSION['email'])){
               <h4><span class="far fa-hand-point-right fa-5x"></span></h4>
               <h4>Completa el registro</h4>
               <p class="text-muted">Ingresa los detalles de tu viaje como imagenes, precio, itinerario, etc.</p>
-              
+
             </div>
           </div>
           <div class="col-sm-4">
@@ -325,7 +328,7 @@ if (isset($_SESSION['email'])){
               <h4><span class="far fa-hand-point-right fa-5x"></span></h4>
               <h4>Invita a tu audiencia</h4>
               <p class="text-muted">Comparte el viaje por redes sociales.</p>
-              
+
             </div>
           </div>
           <div class="col-sm-4">
@@ -334,7 +337,7 @@ if (isset($_SESSION['email'])){
 
               <h4>Viaja</h4>
               <p class="text-muted">Una vez que cierres el viaje, disfruta la</p>
-              
+
             </div>
           </div>
         </div>
@@ -346,7 +349,7 @@ if (isset($_SESSION['email'])){
       </div>
     </section>
 
-    <!-- Clients 
+    <!-- Clients
     <section class="py-5">
       <div class="container">
         <div class="row">
@@ -374,7 +377,7 @@ if (isset($_SESSION['email'])){
       </div>
     </section>
 
-    <!-- Contact 
+    <!-- Contact
     <section id="contact">
       <div class="container">
         <div class="row">
@@ -428,7 +431,7 @@ if (isset($_SESSION['email'])){
           </div>
           <div class="col-md-4">
             <ul class="list-inline social-buttons">
-              
+
               <li class="list-inline-item">
                 <a href="https://www.facebook.com/Agustirri-448992722238113" target="_blank">
                   <i class="fab fa-facebook"></i>
@@ -443,7 +446,7 @@ if (isset($_SESSION['email'])){
           </div>
           <div class="col-md-4">
             <ul class="list-inline quicklinks">
-              
+
               <li class="list-inline-item">
                 <a href="#">Terminos de uso</a>
               </li>
@@ -476,55 +479,55 @@ if (isset($_SESSION['email'])){
                   <div class="container">
                     <div class="card-deck mb-3 text-center">
                     <?php
-                    echo "        <div class=\"card mb-4 box-shadow\">\n"; 
-                    echo "          <div class=\"card-header\">\n"; 
-                    echo "            <h4 class=\"my-0 font-weight-normal\">Paquete 1</h4>\n"; 
-                    echo "          </div>\n"; 
-                    echo "          <div class=\"card-body\">\n"; 
-                    echo "            <h1 class=\"card-title pricing-card-title\">$ 25,499 <small class=\"text-muted\">mxn</small></h1>\n"; 
-                    echo "            <ul class=\"list-unstyled mt-3 mb-4\">\n"; 
-                    
-                    echo "              <li><b>Fecha: </b>28/03/2019 <b>a</b> 01/04/2019</li>\n"; 
-                    echo "              <li>&nbsp;</li>\n"; 
-                    echo "              <li><b>¿Que contiene?</b></li>\n"; 
-                    echo "              <li>Ticket Ultra three days, Hotel Downtown Miami, Vuelo redondo origen seleccionado, Traslados incluidos, Regalos Sorpresa.</li>\n"; 
-                    echo "            </ul>\n"; 
+                    echo "        <div class=\"card mb-4 box-shadow\">\n";
+                    echo "          <div class=\"card-header\">\n";
+                    echo "            <h4 class=\"my-0 font-weight-normal\">Paquete 1</h4>\n";
+                    echo "          </div>\n";
+                    echo "          <div class=\"card-body\">\n";
+                    echo "            <h1 class=\"card-title pricing-card-title\">$ 25,499 <small class=\"text-muted\">mxn</small></h1>\n";
+                    echo "            <ul class=\"list-unstyled mt-3 mb-4\">\n";
+
+                    echo "              <li><b>Fecha: </b>28/03/2019 <b>a</b> 01/04/2019</li>\n";
+                    echo "              <li>&nbsp;</li>\n";
+                    echo "              <li><b>¿Que contiene?</b></li>\n";
+                    echo "              <li>Ticket Ultra three days, Hotel Downtown Miami, Vuelo redondo origen seleccionado, Traslados incluidos, Regalos Sorpresa.</li>\n";
+                    echo "            </ul>\n";
                     if (isset($_SESSION['email'])){
-                        echo " <a class=\"btn btn-lg btn-block btn-outline-primary\" href=\"dashboard/\" alt=\"Apartar Lugar\">\n"; 
-                        echo "Apartar Lugar"; 
+                        echo " <a class=\"btn btn-lg btn-block btn-outline-primary\" href=\"dashboard/\" alt=\"Apartar Lugar\">\n";
+                        echo "Apartar Lugar";
                         echo "</a>\n";
                       }else{
-                        echo " <a class=\"btn btn-lg btn-block btn-outline-primary\" href=\"sign-in/\" alt=\"Apartar Lugar\">\n"; 
+                        echo " <a class=\"btn btn-lg btn-block btn-outline-primary\" href=\"sign-in/\" alt=\"Apartar Lugar\">\n";
                         echo "Apartar Lugar";
                         echo "</a>\n";
                       }
-                    echo "          </div>\n"; 
-                    echo "        </div>\n"; 
-                     echo "        <div class=\"card mb-4 box-shadow\">\n"; 
-                    echo "          <div class=\"card-header\">\n"; 
-                    echo "            <h4 class=\"my-0 font-weight-normal\">Paquete 2</h4>\n"; 
-                    echo "          </div>\n"; 
-                    echo "          <div class=\"card-body\">\n"; 
-                    echo "            <h1 class=\"card-title pricing-card-title\">$ 27,999 <small class=\"text-muted\">mxn</small></h1>\n"; 
-                    echo "            <ul class=\"list-unstyled mt-3 mb-4\">\n"; 
-                    
-                    echo "              <li><b>Fecha: </b>27/03/2019 <b>a</b> 01/04/2019</li>\n"; 
-                    echo "              <li>&nbsp;</li>\n"; 
-                    echo "              <li><b>¿Que contiene?</b></li>\n"; 
-                    echo "              <li>Ticket Ultra three days, Hotel Downtown Miami, Vuelo redondo origen seleccionado, 1 Pool Party Miami Music Week, 1 After Party Miami Music Week, Traslados Incluidos, Regalos Sorpresa.</li>\n"; 
-                    echo "            </ul>\n"; 
+                    echo "          </div>\n";
+                    echo "        </div>\n";
+                     echo "        <div class=\"card mb-4 box-shadow\">\n";
+                    echo "          <div class=\"card-header\">\n";
+                    echo "            <h4 class=\"my-0 font-weight-normal\">Paquete 2</h4>\n";
+                    echo "          </div>\n";
+                    echo "          <div class=\"card-body\">\n";
+                    echo "            <h1 class=\"card-title pricing-card-title\">$ 27,999 <small class=\"text-muted\">mxn</small></h1>\n";
+                    echo "            <ul class=\"list-unstyled mt-3 mb-4\">\n";
+
+                    echo "              <li><b>Fecha: </b>27/03/2019 <b>a</b> 01/04/2019</li>\n";
+                    echo "              <li>&nbsp;</li>\n";
+                    echo "              <li><b>¿Que contiene?</b></li>\n";
+                    echo "              <li>Ticket Ultra three days, Hotel Downtown Miami, Vuelo redondo origen seleccionado, 1 Pool Party Miami Music Week, 1 After Party Miami Music Week, Traslados Incluidos, Regalos Sorpresa.</li>\n";
+                    echo "            </ul>\n";
                     if (isset($_SESSION['email'])){
-                        echo " <a class=\"btn btn-lg btn-block btn-outline-primary\" href=\"dashboard/\" alt=\"Apartar Lugar\">\n"; 
-                        echo "Apartar Lugar"; 
+                        echo " <a class=\"btn btn-lg btn-block btn-outline-primary\" href=\"dashboard/\" alt=\"Apartar Lugar\">\n";
+                        echo "Apartar Lugar";
                         echo "</a>\n";
                       }else{
-                        echo " <a class=\"btn btn-lg btn-block btn-outline-primary\" href=\"sign-in/\" alt=\"Apartar Lugar\">\n"; 
+                        echo " <a class=\"btn btn-lg btn-block btn-outline-primary\" href=\"sign-in/\" alt=\"Apartar Lugar\">\n";
                         echo "Apartar Lugar";
                         echo "</a>\n";
                       }
-                    echo "          </div>\n"; 
-                    echo "        </div>\n"; 
-                    ?>  
+                    echo "          </div>\n";
+                    echo "        </div>\n";
+                    ?>
                     </div>
                   </div>
                   <!--<button class="btn btn-primary" data-dismiss="modal" type="button">
