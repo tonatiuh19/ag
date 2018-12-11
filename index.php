@@ -1,142 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <title>Agustirri</title>
+  <title>Agustirri</title>
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <!-- Custom fonts for this template -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+  <!-- Custom fonts for this template -->
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
-    <!-- Custom styles for this  template -->
-    <link href="css/agency.min.css" rel="stylesheet">
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <!-- Custom styles for this  template -->
+  <link href="css/agency.min.css" rel="stylesheet">
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/compact-gallery.css">
 
-  </head>
+</head>
 
-  <body id="page-top">
-
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="img/logo.png" class="img-responsive" style="width:8%"></a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fa fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav text-uppercase ml-auto">
-
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#portfolio">Viajes</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="tuviaje/">Publica un viaje</a>
-            </li>
-
-            <li class="nav-item">
-<?php
-session_start();
-if (isset($_SESSION['email'])){
-  echo " <a class=\"nav-link js-scroll-trigger\" href=\"dashboard/\" alt=\"Iniciar sesion\">\n";
-  echo "<span class=\"fas fa-user-astronaut fa-lg\" style=\"color:#f4d442\"></span>\n";
-  echo "</a>\n";
-}else{
-  echo " <a class=\"nav-link js-scroll-trigger\" href=\"sign-in/\" alt=\"Iniciar sesion\">\n";
-  echo "<span class=\"fas fa-user-astronaut fa-lg\"></span>\n";
-  echo "</a>\n";
-}
-
-?>
+<body id="page-top">
 
 
-            </li>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="img/logo.png" class="img-responsive" style="width:8%"></a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fa fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav text-uppercase ml-auto">
 
-          </ul>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#portfolio">Viajes</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="tuviaje/">Publica un viaje</a>
+          </li>
+
+          <li class="nav-item">
+            <?php
+            session_start();
+            if (isset($_SESSION['email'])){
+              echo " <a class=\"nav-link js-scroll-trigger\" href=\"dashboard/\" alt=\"Iniciar sesion\">\n";
+              echo "<span class=\"fas fa-user-astronaut fa-lg\" style=\"color:#f4d442\"></span>\n";
+              echo "</a>\n";
+            }else{
+              echo " <a class=\"nav-link js-scroll-trigger\" href=\"sign-in/\" alt=\"Iniciar sesion\">\n";
+              echo "<span class=\"fas fa-user-astronaut fa-lg\"></span>\n";
+              echo "</a>\n";
+            }
+
+            ?>
+
+
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="masthead">
+    <div class="container">
+      <div class="intro-text">
+        <div class="intro-lead-in"></div>
+        <div class="intro-heading text-uppercase">Colecciona aventuras</div>
+        <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#portfolio">Viajar</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">Asi de facil</h2>
+
         </div>
       </div>
-    </nav>
-
-    <!-- Header -->
-    <header class="masthead">
-      <div class="container">
-        <div class="intro-text">
-          <div class="intro-lead-in"></div>
-          <div class="intro-heading text-uppercase">Colecciona aventuras</div>
-          <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#portfolio">Viajar</a>
+      <div class="row text-center">
+        <div class="col-md-4">
+          <span class="fa-stack fa-4x">
+            <i class="fa fa-circle fa-stack-2x text-primary"></i>
+            <i class="fas fa-map fa-stack-1x fa-inverse"></i>
+          </span>
+          <h4 class="service-heading">Encuentra tu aventura</h4>
+          <p class="text-muted">Salidas de diferentes partes del pais a eventos o lugares fabulosos.</p>
+        </div>
+        <div class="col-md-4">
+          <span class="fa-stack fa-4x">
+            <i class="fa fa-circle fa-stack-2x text-primary"></i>
+            <i class="fas fa-dollar-sign fa-stack-1x fa-inverse"></i>
+          </span>
+          <h4 class="service-heading">Pagala como tu quieras</h4>
+          <p class="text-muted">Oxxo, meses sin intereses, transferencia, etc.</p>
+        </div>
+        <div class="col-md-4">
+          <span class="fa-stack fa-4x">
+            <i class="fa fa-circle fa-stack-2x text-primary"></i>
+            <i class="fas fa-child fa-stack-1x fa-inverse"></i>
+          </span>
+          <h4 class="service-heading">¡Viaja y vive!</h4>
+          <p class="text-muted">Just enjoy :)</p>
         </div>
       </div>
-    </header>
+    </div>
+  </section>
 
-    <!-- Services -->
-    <section id="services">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 text-center">
-            <h2 class="section-heading text-uppercase">Asi de facil</h2>
+  <!-- Portfolio Grid -->
+  <section class="bg-light" id="portfolio">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">Proximos viajes</h2>
+          <h3 class="section-subheading text-muted">
+           <!--<input class="form-control form-control-lg" type="text" placeholder="Buscar...">-->
+         </h3>
+       </div>
+     </div>
+     <div class="row">
+      <style type="text/css">
+      .whatever-your-class{
+        width:50px;
+        height:300px
+      }
+      .whatever-your-class2{
+        width:100%;
+        height:300px
+        
+      }
+    </style>
+    <?php
+    require_once('dashboard/cn.php');
+    $trips = array();
+    $sql = "SELECT viajes.titulo, min(paquetes.precio) as 'precio', paquetes.incluido, paquetes.fecha_ida, paquetes.fecha_vuelta, viajes.activo, viajes.id_viaje FROM viajes inner JOIN paquetes ON paquetes.id_viaje = viajes.id_viaje where viajes.activo='1' GROUP by viajes.titulo";
+    $result = $conn->query($sql);
 
-          </div>
-        </div>
-        <div class="row text-center">
-          <div class="col-md-4">
-            <span class="fa-stack fa-4x">
-              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-              <i class="fas fa-map fa-stack-1x fa-inverse"></i>
-            </span>
-            <h4 class="service-heading">Encuentra tu aventura</h4>
-            <p class="text-muted">Salidas de diferentes partes del pais a eventos o lugares fabulosos.</p>
-          </div>
-          <div class="col-md-4">
-            <span class="fa-stack fa-4x">
-              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-              <i class="fas fa-dollar-sign fa-stack-1x fa-inverse"></i>
-            </span>
-            <h4 class="service-heading">Pagala como tu quieras</h4>
-            <p class="text-muted">Oxxo, meses sin intereses, transferencia, etc.</p>
-          </div>
-          <div class="col-md-4">
-            <span class="fa-stack fa-4x">
-              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-              <i class="fas fa-child fa-stack-1x fa-inverse"></i>
-            </span>
-            <h4 class="service-heading">¡Viaja y vive!</h4>
-            <p class="text-muted">Just enjoy :)</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    if ($result->num_rows > 0) {
+              // output data of each row
+      while($row = $result->fetch_assoc()) {
+        $trips[] = $row["id_viaje"];
+        echo "<div class=\"col-md-4 col-sm-6 portfolio-item\">\n"; 
+        echo "            <a class=\"portfolio-link\" data-toggle=\"modal\" href=\"#portfolioModal".$row["id_viaje"]."\">\n"; 
+        echo "              <div class=\"portfolio-hover\">\n"; 
+        echo "                <div class=\"portfolio-hover-content\">\n"; 
+        echo "                  <i class=\"fa fa-plus fa-3x\"></i>\n"; 
+        echo "                </div>\n"; 
+        echo "              </div>\n"; 
+        $thumbs = glob("trips/".$row["id_viaje"]."/principal/*.{jpg,png,gif,JPG,PNG}", GLOB_BRACE); 
+        if(count($thumbs)) {
+          natcasesort($thumbs);
+          foreach($thumbs as $thumb) {
+            echo "              <img class=\"img-fluid whatever-your-class\" src=\"".$thumb."\" style=\"width:100%\" >\n"; 
 
-    <!-- Portfolio Grid -->
-    <section class="bg-light" id="portfolio">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 text-center">
-            <h2 class="section-heading text-uppercase">Proximos viajes</h2>
-            <h3 class="section-subheading text-muted">
-             <!--<input class="form-control form-control-lg" type="text" placeholder="Buscar...">-->
-            </h3>
-          </div>
-        </div>
-        <div class="row">
-          <?php
-          require_once('dashboard/cn.php');
-          ?>
-          <div class="col-md-4 col-sm-6 portfolio-item">
+          }} else {
+            echo "Sorry, no images to display!";
+          }
+
+          echo "            </a>\n"; 
+          echo "            <div class=\"portfolio-caption\">\n"; 
+          echo "              <h4>".$row["titulo"]."</h4>\n"; 
+          echo "              <p class=\"text-muted\">Desde $".number_format($row["precio"])."</p>\n"; 
+          echo "            </div>\n"; 
+          echo "          </div>\n";
+        }
+      } else {
+        echo "0 results";
+      }
+
+      ?>
+    </div>
+  </div>
+</section>
+          <!--<div class="col-md-4 col-sm-6 portfolio-item">
             <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
               <div class="portfolio-hover">
                 <div class="portfolio-hover-content">
@@ -222,7 +273,7 @@ if (isset($_SESSION['email'])){
           </div>
         </div>
       </div>
-    </section>
+    </section>-->
 
     <!-- About
     <section id="about">
@@ -458,273 +509,307 @@ if (isset($_SESSION['email'])){
 
     <!-- Portfolio Modals -->
 
-    <!-- Modal 1 -->
-    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="close-modal" data-dismiss="modal">
-            <div class="lr">
-              <div class="rl"></div>
+    <!-- Modal 1 --><?php
+    $sql = "SELECT * FROM viajes where activo=1";
+    $result = $conn->query($sql);
+    
+    if ($result->num_rows > 0) {
+              // output data of each row
+      while($row = $result->fetch_assoc()) {
+        echo "<div class=\"portfolio-modal modal fade\" id=\"portfolioModal".$row["id_viaje"]."\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\n"; 
+        echo "      <div class=\"modal-dialog\">\n"; 
+        echo "        <div class=\"modal-content\">\n"; 
+        echo "          <div class=\"close-modal\" data-dismiss=\"modal\">\n"; 
+        echo "            <div class=\"lr\">\n"; 
+        echo "              <div class=\"rl\"></div>\n"; 
+        echo "            </div>\n"; 
+        echo "          </div>\n"; 
+        echo "          <div class=\"container\">\n"; 
+        echo "            <div class=\"row\">\n"; 
+        echo "              <div class=\" mx-auto\">\n"; 
+        echo "                <div class=\"modal-body\">\n"; 
+        echo "                  <!-- Project Details Go Here -->\n"; 
+        echo "                  <h2 class=\"text-uppercase\">".$row["titulo"]."</h2>\n"; 
+        echo "                  <p><b>Desde:</b> ".$row["origen"]."</p>\n"; 
+        $thumbs = glob("trips/".$row["id_viaje"]."/principal/*.{jpg,png,gif,JPG,PNG}", GLOB_BRACE); 
+        if(count($thumbs)) {
+          natcasesort($thumbs);
+          foreach($thumbs as $thumb) {
+            echo "                  <img class=\"img-fluid d-block mx-auto\" src=\"".$thumb."\" alt=\"\">\n"; 
+
+          }} else {
+            echo "Sorry, no images to display!";
+          }
+
+
+          echo "                  <p>".$row["general_descripcion"]."</p>\n"; 
+          echo "                  <div class=\"container\">\n"; 
+          echo "                    <div class=\"card-deck mb-3 text-center\">\n";
+
+          $sql2 = "SELECT id_paquete, fecha_ida, fecha_vuelta, incluido, precio FROM paquetes where id_viaje='".$row["id_viaje"]."'";
+          $result2 = $conn->query($sql2);
+          $num = 1;
+          if ($result2->num_rows > 0) {
+            // output data of each row
+            while($row2 = $result2->fetch_assoc()) {
+              echo "        <div class=\"card mb-4 box-shadow\">\n"; 
+              echo "          <div class=\"card-header\">\n"; 
+              echo "            <h4 class=\"my-0 font-weight-normal\">Paquete ".$num."</h4>\n"; 
+              echo "          </div>\n"; 
+              echo "          <div class=\"card-body\">\n"; 
+              echo "            <h1 class=\"card-title pricing-card-title\">$".number_format($row2["precio"])." <small class=\"text-muted\">mxn</small></h1>\n"; 
+              echo "            <ul class=\"list-unstyled mt-3 mb-4\">\n"; 
+              echo "              <li><b>Fecha: </b>".$row2["fecha_ida"]." <b>a</b> ".$row2["fecha_vuelta"].".</li>\n"; 
+              echo "              <li>&nbsp;</li>\n"; 
+              echo "              <li><b>¿Que contiene?</b></li>\n"; 
+              echo "              <li>".$row2["incluido"]."</li>\n"; 
+              echo "            </ul>\n"; 
+              if (isset($_SESSION['email'])){
+                echo " <a class=\"btn btn-lg btn-block btn-outline-primary\" href=\"dashboard/\" alt=\"Apartar Lugar\">\n";
+                echo "Apartar Lugar";
+                echo "</a>\n";
+              }else{
+                echo " <a class=\"btn btn-lg btn-block btn-outline-primary\" href=\"sign-in/\" alt=\"Apartar Lugar\">\n";
+                echo "Apartar Lugar";
+                echo "</a>\n";
+              }
+              echo "          </div>\n"; 
+              echo "        </div>\n"; 
+              $num++;
+            }
+          } else {
+            echo "0 results";
+          }
+
+
+          echo "</div>\n"; 
+
+          echo "<section class=\"gallery-block compact-gallery\">\n"; 
+          echo "        <div class=\"container\">\n"; 
+          echo "            <div class=\"heading\">\n"; 
+          echo "                <h2>Galeria de imagenes:</h2>\n"; 
+          echo "            </div>\n"; 
+          echo "            <div class=\"row no-gutters\">\n"; 
+          echo "               \n"; 
+          $thumbs2 = glob("trips/".$row["id_viaje"]."/*.{jpg,png,gif,JPG,PNG}", GLOB_BRACE); 
+        if(count($thumbs2)) {
+          natcasesort($thumbs2);
+          foreach($thumbs2 as $thumb2) {
+            echo "                <div class=\"col-md-6 col-lg-4 item zoom-on-hover\">\n"; 
+          echo "                    <a class=\"lightbox\" href=\"../img/image2.jpg\">\n"; 
+          echo "                        <img class=\"img-fluid image whatever-your-class2\" src=\"".$thumb2."\">\n"; 
+
+          echo "                    </a>\n"; 
+          echo "                </div>\n"; 
+
+          }} else {
+            echo "Sorry, no images to display!";
+          }
+          echo "               \n"; 
+          echo "            </div>\n"; 
+          echo "        </div>\n"; 
+          echo "    </section>\n";
+          echo "                  </div>\n"; 
+          echo "                  <!--<button class=\"btn btn-primary\" data-dismiss=\"modal\" type=\"button\">\n"; 
+          echo "                    <i class=\"fa fa-times\"></i>\n"; 
+          echo "                    </button>-->\n"; 
+          echo "                </div>\n"; 
+          echo "              </div>\n"; 
+          echo "            </div>\n"; 
+          echo "          </div>\n"; 
+          echo "        </div>\n"; 
+          echo "      </div>\n"; 
+          echo "    </div>\n";
+        }
+      } else {
+        echo "0 results";
+      }
+      ?>
+
+      <!-- Modal 2 -->
+      <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+              <div class="lr">
+                <div class="rl"></div>
+              </div>
             </div>
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 mx-auto">
-                <div class="modal-body">
-                  <!-- Project Details Go Here -->
-                  <h2 class="text-uppercase">Ultra Miami 2019</h2>
-                  <p><b>Desde:</b> Guadalajara, Monterrey, CDMX, Cancun</p>
-                  <img class="img-fluid d-block mx-auto" src="img/spider.png" alt="">
-                  <p>Ultra Music Festival reúne a los mejores exponentes de la música electrónica durante 3 días y este año celebrara sus 21 años. <a href="https://ultramusicfestival.com" target="_blank">Ir al sitio.</a></p>
-                  <div class="container">
-                    <div class="card-deck mb-3 text-center">
-                    <?php
-                    echo "        <div class=\"card mb-4 box-shadow\">\n";
-                    echo "          <div class=\"card-header\">\n";
-                    echo "            <h4 class=\"my-0 font-weight-normal\">Paquete 1</h4>\n";
-                    echo "          </div>\n";
-                    echo "          <div class=\"card-body\">\n";
-                    echo "            <h1 class=\"card-title pricing-card-title\">$ 25,499 <small class=\"text-muted\">mxn</small></h1>\n";
-                    echo "            <ul class=\"list-unstyled mt-3 mb-4\">\n";
-
-                    echo "              <li><b>Fecha: </b>28/03/2019 <b>a</b> 01/04/2019</li>\n";
-                    echo "              <li>&nbsp;</li>\n";
-                    echo "              <li><b>¿Que contiene?</b></li>\n";
-                    echo "              <li>Ticket Ultra three days, Hotel Downtown Miami, Vuelo redondo origen seleccionado, Traslados incluidos, Regalos Sorpresa.</li>\n";
-                    echo "            </ul>\n";
-                    if (isset($_SESSION['email'])){
-                        echo " <a class=\"btn btn-lg btn-block btn-outline-primary\" href=\"dashboard/\" alt=\"Apartar Lugar\">\n";
-                        echo "Apartar Lugar";
-                        echo "</a>\n";
-                      }else{
-                        echo " <a class=\"btn btn-lg btn-block btn-outline-primary\" href=\"sign-in/\" alt=\"Apartar Lugar\">\n";
-                        echo "Apartar Lugar";
-                        echo "</a>\n";
-                      }
-                    echo "          </div>\n";
-                    echo "        </div>\n";
-                     echo "        <div class=\"card mb-4 box-shadow\">\n";
-                    echo "          <div class=\"card-header\">\n";
-                    echo "            <h4 class=\"my-0 font-weight-normal\">Paquete 2</h4>\n";
-                    echo "          </div>\n";
-                    echo "          <div class=\"card-body\">\n";
-                    echo "            <h1 class=\"card-title pricing-card-title\">$ 27,999 <small class=\"text-muted\">mxn</small></h1>\n";
-                    echo "            <ul class=\"list-unstyled mt-3 mb-4\">\n";
-
-                    echo "              <li><b>Fecha: </b>27/03/2019 <b>a</b> 01/04/2019</li>\n";
-                    echo "              <li>&nbsp;</li>\n";
-                    echo "              <li><b>¿Que contiene?</b></li>\n";
-                    echo "              <li>Ticket Ultra three days, Hotel Downtown Miami, Vuelo redondo origen seleccionado, 1 Pool Party Miami Music Week, 1 After Party Miami Music Week, Traslados Incluidos, Regalos Sorpresa.</li>\n";
-                    echo "            </ul>\n";
-                    if (isset($_SESSION['email'])){
-                        echo " <a class=\"btn btn-lg btn-block btn-outline-primary\" href=\"dashboard/\" alt=\"Apartar Lugar\">\n";
-                        echo "Apartar Lugar";
-                        echo "</a>\n";
-                      }else{
-                        echo " <a class=\"btn btn-lg btn-block btn-outline-primary\" href=\"sign-in/\" alt=\"Apartar Lugar\">\n";
-                        echo "Apartar Lugar";
-                        echo "</a>\n";
-                      }
-                    echo "          </div>\n";
-                    echo "        </div>\n";
-                    ?>
-                    </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-8 mx-auto">
+                  <div class="modal-body">
+                    <!-- Project Details Go Here -->
+                    <h2 class="text-uppercase">Project Name</h2>
+                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                    <img class="img-fluid d-block mx-auto" src="img/portfolio/02-thumbnail.jpg" alt="">
+                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                    <ul class="list-inline">
+                      <li>Date: January 2017</li>
+                      <li>Client: Explore</li>
+                      <li>Category: Graphic Design</li>
+                    </ul>
+                    <button class="btn btn-primary" data-dismiss="modal" type="button">
+                      <i class="fa fa-times"></i>
+                    Close Project</button>
                   </div>
-                  <!--<button class="btn btn-primary" data-dismiss="modal" type="button">
-                    <i class="fa fa-times"></i>
-                    </button>-->
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Modal 2 -->
-    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="close-modal" data-dismiss="modal">
-            <div class="lr">
-              <div class="rl"></div>
+      <!-- Modal 3 -->
+      <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+              <div class="lr">
+                <div class="rl"></div>
+              </div>
             </div>
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 mx-auto">
-                <div class="modal-body">
-                  <!-- Project Details Go Here -->
-                  <h2 class="text-uppercase">Project Name</h2>
-                  <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                  <img class="img-fluid d-block mx-auto" src="img/portfolio/02-thumbnail.jpg" alt="">
-                  <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                  <ul class="list-inline">
-                    <li>Date: January 2017</li>
-                    <li>Client: Explore</li>
-                    <li>Category: Graphic Design</li>
-                  </ul>
-                  <button class="btn btn-primary" data-dismiss="modal" type="button">
-                    <i class="fa fa-times"></i>
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-8 mx-auto">
+                  <div class="modal-body">
+                    <!-- Project Details Go Here -->
+                    <h2 class="text-uppercase">Project Name</h2>
+                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                    <img class="img-fluid d-block mx-auto" src="img/portfolio/03-thumbnail.jpg" alt="">
+                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                    <ul class="list-inline">
+                      <li>Date: January 2017</li>
+                      <li>Client: Finish</li>
+                      <li>Category: Identity</li>
+                    </ul>
+                    <button class="btn btn-primary" data-dismiss="modal" type="button">
+                      <i class="fa fa-times"></i>
                     Close Project</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Modal 3 -->
-    <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="close-modal" data-dismiss="modal">
-            <div class="lr">
-              <div class="rl"></div>
+      <!-- Modal 4 -->
+      <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+              <div class="lr">
+                <div class="rl"></div>
+              </div>
             </div>
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 mx-auto">
-                <div class="modal-body">
-                  <!-- Project Details Go Here -->
-                  <h2 class="text-uppercase">Project Name</h2>
-                  <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                  <img class="img-fluid d-block mx-auto" src="img/portfolio/03-thumbnail.jpg" alt="">
-                  <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                  <ul class="list-inline">
-                    <li>Date: January 2017</li>
-                    <li>Client: Finish</li>
-                    <li>Category: Identity</li>
-                  </ul>
-                  <button class="btn btn-primary" data-dismiss="modal" type="button">
-                    <i class="fa fa-times"></i>
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-8 mx-auto">
+                  <div class="modal-body">
+                    <!-- Project Details Go Here -->
+                    <h2 class="text-uppercase">Project Name</h2>
+                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                    <img class="img-fluid d-block mx-auto" src="img/portfolio/04-thumbnail.jpg" alt="">
+                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                    <ul class="list-inline">
+                      <li>Date: January 2017</li>
+                      <li>Client: Lines</li>
+                      <li>Category: Branding</li>
+                    </ul>
+                    <button class="btn btn-primary" data-dismiss="modal" type="button">
+                      <i class="fa fa-times"></i>
                     Close Project</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Modal 4 -->
-    <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="close-modal" data-dismiss="modal">
-            <div class="lr">
-              <div class="rl"></div>
+      <!-- Modal 5 -->
+      <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+              <div class="lr">
+                <div class="rl"></div>
+              </div>
             </div>
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 mx-auto">
-                <div class="modal-body">
-                  <!-- Project Details Go Here -->
-                  <h2 class="text-uppercase">Project Name</h2>
-                  <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                  <img class="img-fluid d-block mx-auto" src="img/portfolio/04-thumbnail.jpg" alt="">
-                  <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                  <ul class="list-inline">
-                    <li>Date: January 2017</li>
-                    <li>Client: Lines</li>
-                    <li>Category: Branding</li>
-                  </ul>
-                  <button class="btn btn-primary" data-dismiss="modal" type="button">
-                    <i class="fa fa-times"></i>
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-8 mx-auto">
+                  <div class="modal-body">
+                    <!-- Project Details Go Here -->
+                    <h2 class="text-uppercase">Project Name</h2>
+                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                    <img class="img-fluid d-block mx-auto" src="img/portfolio/05-thumbnail.jpg" alt="">
+                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                    <ul class="list-inline">
+                      <li>Date: January 2017</li>
+                      <li>Client: Southwest</li>
+                      <li>Category: Website Design</li>
+                    </ul>
+                    <button class="btn btn-primary" data-dismiss="modal" type="button">
+                      <i class="fa fa-times"></i>
                     Close Project</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Modal 5 -->
-    <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="close-modal" data-dismiss="modal">
-            <div class="lr">
-              <div class="rl"></div>
+      <!-- Modal 6 -->
+      <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+              <div class="lr">
+                <div class="rl"></div>
+              </div>
             </div>
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 mx-auto">
-                <div class="modal-body">
-                  <!-- Project Details Go Here -->
-                  <h2 class="text-uppercase">Project Name</h2>
-                  <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                  <img class="img-fluid d-block mx-auto" src="img/portfolio/05-thumbnail.jpg" alt="">
-                  <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                  <ul class="list-inline">
-                    <li>Date: January 2017</li>
-                    <li>Client: Southwest</li>
-                    <li>Category: Website Design</li>
-                  </ul>
-                  <button class="btn btn-primary" data-dismiss="modal" type="button">
-                    <i class="fa fa-times"></i>
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-8 mx-auto">
+                  <div class="modal-body">
+                    <!-- Project Details Go Here -->
+                    <h2 class="text-uppercase">Project Name</h2>
+                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                    <img class="img-fluid d-block mx-auto" src="img/portfolio/06-thumbnail.jpg" alt="">
+                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                    <ul class="list-inline">
+                      <li>Date: January 2017</li>
+                      <li>Client: Window</li>
+                      <li>Category: Photography</li>
+                    </ul>
+                    <button class="btn btn-primary" data-dismiss="modal" type="button">
+                      <i class="fa fa-times"></i>
                     Close Project</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Modal 6 -->
-    <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="close-modal" data-dismiss="modal">
-            <div class="lr">
-              <div class="rl"></div>
-            </div>
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 mx-auto">
-                <div class="modal-body">
-                  <!-- Project Details Go Here -->
-                  <h2 class="text-uppercase">Project Name</h2>
-                  <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                  <img class="img-fluid d-block mx-auto" src="img/portfolio/06-thumbnail.jpg" alt="">
-                  <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                  <ul class="list-inline">
-                    <li>Date: January 2017</li>
-                    <li>Client: Window</li>
-                    <li>Category: Photography</li>
-                  </ul>
-                  <button class="btn btn-primary" data-dismiss="modal" type="button">
-                    <i class="fa fa-times"></i>
-                    Close Project</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      <!-- Bootstrap core JavaScript -->
+      <script src="vendor/jquery/jquery.min.js"></script>
+      <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- Plugin JavaScript -->
+      <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+      <!-- Contact form JavaScript -->
+      <script src="js/jqBootstrapValidation.js"></script>
+      <script src="js/contact_me.js"></script>
 
-    <!-- Contact form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
+      <!-- Custom scripts for this template -->
+      <script src="js/agency.min.js"></script>
 
-    <!-- Custom scripts for this template -->
-    <script src="js/agency.min.js"></script>
+    </body>
 
-  </body>
-
-</html>
+    </html>

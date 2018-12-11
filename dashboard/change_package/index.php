@@ -99,7 +99,7 @@ echo "\n";
 echo "        <main role=\"main\" class=\"col-md-9 ml-sm-auto col-lg-10 px-4\">\n"; 
 echo "\n"; 
 //START
-$sql = "SELECT titulo, origen, destino FROM viajes where id_viaje='".$cambio."'";
+$sql = "SELECT titulo, origen, destino, general_descripcion FROM viajes where id_viaje='".$cambio."'";
 $result = $conn->query($sql);
 $num = 1;
 if ($result->num_rows > 0) {
@@ -108,8 +108,8 @@ if ($result->num_rows > 0) {
         echo "    <div class=\"pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center\">\n"; 
         echo "      <h1 class=\"display-4\">".$row["titulo"]."</h1>\n"; 
 
-        echo "      <p class=\"lead\">Ultra Music Festival reúne a los mejores exponentes de la música electrónica durante 3 días y este año celebrara sus 21 años.";
-        echo "<a href=\"https://ultramusicfestival.com/\" target=\"_blank\"> Ir al sitio.</a>\n";
+        echo "      <p class=\"lead\">".$row["general_descripcion"]."";
+        
         echo "</p>\n"; 
         echo "<p><b>Origen: </b>".$row["origen"]." <b></p>";
         echo "<p>Destino: </b>".$row["destino"]."</p>\n";
