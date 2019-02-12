@@ -150,6 +150,12 @@ if (isset($_SESSION['email'])){
 								echo "                        <a href=\"javascript:{}\" onclick=\"document.getElementById('my_form').submit();\">\n"; 
 								echo "Cambiar paquete <span class=\"fas fa-arrow-circle-right\"></span></a>\n";
 								echo "</form>\n"; 
+								echo "<form action=\"payments/\" id=\"my_form\" method=\"post\">\n";
+								echo "  <input type=\"hidden\"  name=\"cambio\" value=\"".$row["id_viaje"]."\">\n";  
+								echo "  <input type=\"hidden\"  name=\"reserva\" value=\"".$row["id_reserva"]."\">\n"; 
+								echo "                        <a href=\"javascript:{}\" onclick=\"document.getElementById('my_form').submit();\">\n"; 
+								echo "Mis pagos <span class=\"fas fa-arrow-circle-right\"></span></a>\n";
+								echo "</form>\n"; 
 								echo "    <a href=\"#\" class=\"card-link\">Ver itinerario <span class=\"fas fa-arrow-circle-right\"></span></a>\n";
 								/*echo "<form action=\"pay/\" id=\"my_form2\" method=\"post\">\n";
 								echo "  <input type=\"hidden\"  name=\"cambio\" value=\"".$row["id_reserva"]."\">\n";  

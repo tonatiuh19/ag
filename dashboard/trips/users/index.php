@@ -289,6 +289,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               echo "<button type=\"button\" class=\"btn btn-sm btn-outline-info\" data-toggle=\"modal\" data-target=\"#fotosModal\">\n"; 
               echo "  <span class=\"far fa-plus-square\"></span> Fotos\n"; 
               echo "</button>&nbsp;\n"; 
+              echo "<button type=\"button\" class=\"btn btn-sm btn-outline-info\" data-toggle=\"modal\" data-target=\"#promoModal\">\n"; 
+              echo "  <span class=\"far fa-plus-square\"></span> Cupon\n"; 
+              echo "</button>&nbsp;\n"; 
               echo "              <button class=\"btn btn-sm btn-outline-info\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"Ayuda\" type=\"button\">\n";
               echo "                <span class=\"fas fa-question-circle\"></span>\n";
               echo "              </button>\n";
@@ -716,7 +719,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
           }
         }
-        $conn->close();
 
 
 
@@ -726,6 +728,79 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </main>
     </div>
   </div>
+  <div class="modal fade" id="promoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Añadir Cupon</h5>
+        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#cuponModal">
+          Cupones existentes
+        </button>
+
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="cuponModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cupones existentes</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <?php
+        $sql8 = "SELECT * FROM promo where id_viaje=".$viaje."";
+        $result8 = $conn->query($sql8);
+
+        if ($result8->num_rows > 0) {
+            echo "<table class=\"table\">\n"; 
+            echo "  <tr>\n"; 
+            echo "    <th>Cupon</th>\n"; 
+            echo "    <th>Fecha Inicio</th>\n"; 
+            echo "    <th>Fecha Expiracion</th>\n"; 
+            echo "    <th>Descuento</th>\n"; 
+            echo "    <th>Eliminar</th>\n"; 
+            echo "  </tr>\n"; 
+           
+            
+            while($row8 = $result8->fetch_assoc()) {
+                  echo "  <tr>\n"; 
+                  echo "    <td>".$row8["id_promo"]."</td>\n"; 
+                  echo "    <td>".$row8["fecha_ap"]."</td>\n"; 
+                  echo "    <td>".$row8["fecha_exp"]."</td>\n"; 
+                  echo "    <td>- %".$row8["descuento"]."</td>\n"; 
+                  echo "    <td>"; 
+                  echo "<form action=\"delete_coupon.php\" method=\"post\">\n"; 
+                  echo "  <input type=\"hidden\" id=\"custId\" name=\"custId\" value=\"3487\">\n"; 
+                  echo "  <button type=\"submit\" class=\"btn btn-danger btn-sm\"><i class=\"fas fa-trash-alt\"></i></button>\n"; 
+                  echo "</form>\n";
+                  echo "</td>\n"; 
+                  echo "  </tr>\n"; 
+            }
+        } else {
+            echo "0 results";
+        }
+        echo "</table>\n";
+        ?>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Regresar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
     <!-- Bootstrap core JavaScript
       ================================================== -->
