@@ -212,6 +212,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </nav>
 
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 
           <?php
@@ -733,17 +734,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Añadir Cupon</h5>
-        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#cuponModal">
-          Cupones existentes
-        </button>
-
+        <?php
+        $sql9 = "SELECT * FROM promo where id_viaje=".$viaje."";
+        $result9 = $conn->query($sql9);
+        if ($result9->num_rows > 0) {
+           echo "<button type=\"button\" class=\"btn btn-link\" data-toggle=\"modal\" data-target=\"#cuponModal\">\n"; 
+            echo "          Cupones existentes\n"; 
+            echo "        </button>\n";
+        }
+        ?>
       </div>
       <div class="modal-body">
-        ...
+        <form method="post" action="save_cupon.php">
+          <div class="form-group">
+            <label for="formGroupExampleInput">Nombre del Cupon: (Maximo 20 caracteres)</label>
+            <input type="text" class="form-control" id="input1" name="name" maxlength="20" style="text-transform:uppercase" placeholder="ej: AMIGOSDESC" required>
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput2">Fecha Inicio:</label>
+            <input type="date" class="form-control" name="fecha_ap" placeholder="Another input" required>
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput2">Fecha Expiracion:</label>
+            <input type="date" class="form-control" name="fecha_exp" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Descuento: </label>
+            <select class="form-control" name="descuento" required="">
+              <?php
+              for ($i=1; $i < 51; $i++) { 
+                echo "<option value=\"".$i."\">-%".$i."</option>\n";
+              }
+              ?>
+            </select>
+          </div>
+          <?php
+            //
+            echo "<input type=\"hidden\" name=\"viaje\" value=\"".$viaje."\">\n";
+          ?>
+          
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Guardar</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
       </div>
     </div>
   </div>
@@ -782,8 +816,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   echo "    <td>".$row8["fecha_exp"]."</td>\n"; 
                   echo "    <td>- %".$row8["descuento"]."</td>\n"; 
                   echo "    <td>"; 
-                  echo "<form action=\"delete_coupon.php\" method=\"post\">\n"; 
-                  echo "  <input type=\"hidden\" id=\"custId\" name=\"custId\" value=\"3487\">\n"; 
+                  echo "<form action=\"delete_coupon.php\" method=\"post\" onsubmit=\"return confirm('¿Quieres eliminar el cupon?');\">\n"; 
+                  echo "  <input type=\"hidden\" name=\"cupon\" value=\"".$row8["id_promo"]."\">\n"; 
+                  echo "  <input type=\"hidden\" name=\"viaje\" value=\"".$viaje."\">\n"; 
                   echo "  <button type=\"submit\" class=\"btn btn-danger btn-sm\"><i class=\"fas fa-trash-alt\"></i></button>\n"; 
                   echo "</form>\n";
                   echo "</td>\n"; 
@@ -888,6 +923,12 @@ $(document).on('ready', function() {
         elErrorContainer: '#kartik-file-errors',
         allowedFileExtensions: ["jpg", "png", "gif"]
         //uploadUrl: '/site/file-upload-single'
+    });
+});
+$(function() {
+    $('#input1').on('keypress', function(e) {
+        if (e.which == 32)
+            return false;
     });
 });
 </script>

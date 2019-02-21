@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.image-selector input{
+    margin:0;padding:0;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
+}
+
+
+
+.one{background-image:url(https://placeimg.com/200/100/animals);}
+.two{background-image:url(https://placeimg.com/200/100/people);}
+.three{background-image:url(https://placeimg.com/200/100/tech);}
+.four{background-image:url(https://placeimg.com/200/100/nature);}
+
+.image-selector-2 input:active +.select, .image-selector input:active +.select{opacity: .9;}
+.image-selector-2 input:checked +.select, .image-selector input:checked +.select{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+.image-selector {
+    position:relative;
+    min-height:200px!important;
+}
+.select{
+    cursor:pointer;
+    background-size:contain;
+    background-repeat:no-repeat;
+    display:block;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+       -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+            filter: brightness(1.8) grayscale(1) opacity(.7);
+}
+.select:hover{
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+       -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+            filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
+	</style>
+</head>
+<body>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<div class="row">
+	<div class="col-xs-3 image-selector">
+      	<input checked="checked" id="one" type="radio" name="image" value="one">
+        <label class="select one" for="one"></label>
+  	</div>
+  	<div class="col-xs-3 image-selector">
+      	<input id="two" type="radio" name="image" value="two">
+        <label class="select two" for="two"></label>
+ 	</div>
+	<div class="col-xs-3 image-selector">
+      	<input id="three" type="radio" name="image" value="three">
+        <label class="select three" for="three"></label>
+  	</div>
+  	<div class="col-xs-3 image-selector">
+      	<input id="four" type="radio" name="image" value="four">
+        <label class="select four" for="four"></label>
+  	</div>
+</div>
+</body>
+</html>
