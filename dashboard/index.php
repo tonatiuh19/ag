@@ -12,6 +12,10 @@ if (isset($_SESSION['email'])){
 <!doctype html>
 <html lang="en">
 <head>
+		<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="description" content="">
@@ -26,7 +30,8 @@ if (isset($_SESSION['email'])){
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<!-- Custom styles for this template -->
 	<link href="dashboard.css" rel="stylesheet">
-
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdn.conekta.io/js/latest/conekta.js"></script>
 
 </head>
 
@@ -248,35 +253,37 @@ if (isset($_SESSION['email'])){
 								echo "<div class=\"container p-3 mb-2 bg-dark text-white\">\n"; 
 								echo "    <div class=\"row\">\n"; 
 								echo "        <div class=\"col-sm-12\">"; 
-								echo "<form>";
+								
+								echo "<form action=\"pay.php\" method=\"POST\" id=\"card-form\">\n";
 								echo "  <div class=\"form-group\">\n"; 
+								
 								echo "    <label for=\"exampleFormControlFile1\">Monto: </label>\n"; 
-								echo "<input class=\"form-control form-control-lg\" type=\"number\" placeholder=\"$ 500\" required>\n"; 
+								echo "<input class=\"form-control form-control-lg\" type=\"number\" placeholder=\"$ 500\" name=\"amount\"  required>\n"; 
 								echo "  </div>\n";
 								echo "</div>\n"; 
 								echo "    </div>\n"; 
 								echo "</div><hr/>\n";
 
-
+								echo "<span class=\"card-errors\"></span>\n";
 								echo "<div class=\"container\">\n"; 
 								echo "    <div class=\"row\">\n"; 
 								echo "        <div class=\"col-sm-12\">";
 								echo "<div class=\"form-group\">\n"; 
 								echo "    <label for=\"formGroupExampleInput\">Numero de tarjeta:</label>\n"; 
-								echo "    <input type=\"number\" class=\"form-control\" id=\"monto\" placeholder=\"XXXX XXXX XXXX XXXX\" required>\n"; 
+								echo "    <input type=\"number\" class=\"form-control\" id=\"monto\" placeholder=\"XXXX XXXX XXXX XXXX\" size=\"20\" data-conekta=\"card[number]\" required>\n"; 
 								echo "  </div>\n";
 								echo "</div>\n"; 
 								echo "        <div class=\"col-sm-12\">"; 
 								echo "<div class=\"form-group\">\n"; 
 								echo "    <label for=\"formGroupExampleInput\">Nombre que aparece en tarjeta:</label>\n"; 
-								echo "    <input type=\"text\" class=\"form-control\" id=\"formGroupExampleInput\" placeholder=\"ej. ANTONIO STARK\" required>\n"; 
+								echo "    <input type=\"text\" class=\"form-control\" id=\"formGroupExampleInput\" placeholder=\"ej. ANTONIO STARK\" size=\"20\" data-conekta=\"card[name]\" required>\n"; 
 								echo "  </div>\n";
 								echo "</div>\n"; 
 								echo "        <div class=\"col-sm-8\">"; 
 								echo "<div class=\"row\">\n"; 
 								echo "    <div class=\"col\">\n"; 
 								echo "    <label for=\"formGroupExampleInput\">Fecha expiracion:</label>\n"; 
-								echo "      <select id=\"inputState\" class=\"form-control\" required>\n"; 
+								echo "      <select id=\"inputState\" class=\"form-control\" data-conekta=\"card[exp_month]\" required>\n"; 
 								echo "    <option value=''>Mes</option>\n"; 
 								echo "    <option value='01'>01 - Enero</option>\n"; 
 								echo "    <option value='02'>02 - Febrero</option>\n"; 
@@ -294,7 +301,7 @@ if (isset($_SESSION['email'])){
 								echo "    </div>\n"; 
 								echo "    <div class=\"col\">\n"; 
 								echo "    <label for=\"formGroupExampleInput\">&nbsp;</label>\n"; 
-								echo "      <select id=\"inputState\" class=\"form-control\" required>\n"; 
+								echo "      <select id=\"inputState\" class=\"form-control\" data-conekta=\"card[exp_year]\" required>\n"; 
 								echo "    <option value=''>Año</option>\n"; 
 								echo "    <option value='2012'>2012</option>\n"; 
 								echo "    <option value='2013'>2013</option>\n"; 
@@ -322,7 +329,7 @@ if (isset($_SESSION['email'])){
 								echo "    <span class=\"fas fa-question-circle\"></span>\n"; 
 								echo "  </a>\n";
 								echo "</label>\n"; 
-								echo "      <input type=\"number\" class=\"form-control\" placeholder=\"481\" required>\n"; 
+								echo "      <input type=\"number\" class=\"form-control\" placeholder=\"481\" size=\"4\" data-conekta=\"card[cvc]\" required>\n"; 
 								echo "    </div>\n"; 
 								echo "</div>\n";
 								echo "</div>\n"; 
@@ -476,7 +483,36 @@ if (isset($_SESSION['email'])){
 </main>
 </div>
 </div>
+<script type="text/javascript">
+  Conekta.setPublicKey('key_Lc3mLsmPDnNJsv5zYhzAkjA');
+  
 
+  var conektaSuccessResponseHandler = function(token) {
+    var $form = $("#card-form");
+    //Add the token_id in the form
+     $form.append($('<input type="hidden" name="conektaTokenId" id="conektaTokenId">').val(token.id));
+    $form.get(0).submit(); //Submit
+  };
+
+  var conektaErrorResponseHandler = function(response) {
+    var $form = $("#card-form");
+    $form.find(".card-errors").text(response.message_to_purchaser);
+    $form.find("button").prop("disabled", false);
+
+  };
+
+  //jQuery generate the token on submit.
+  $(function () {
+    $("#card-form").submit(function(event) {
+      var $form = $(this);
+      // Prevents double clic
+      $form.find("button").prop("disabled", true);
+      Conekta.Token.create($form, conektaSuccessResponseHandler, conektaErrorResponseHandler);
+
+      return false;
+    });
+  });
+</script>
 <script type="text/javascript">
 	$(function() {
 		$('[data-toggle="tooltip"]').tooltip({
