@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 28, 2019 at 11:35 PM
+-- Generation Time: Mar 02, 2019 at 02:12 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -69,16 +69,33 @@ INSERT INTO `paquetes` (`id_paquete`, `id_viaje`, `precio`, `incluido`, `fecha_i
 
 CREATE TABLE `payconek` (
   `id_pay` int(255) NOT NULL,
-  `cantidad` float(7,4) NOT NULL,
-  `id_paquete` int(10) NOT NULL,
-  `id_usuario` varchar(100) COLLATE latin1_spanish_ci NOT NULL,
+  `id_reserva` int(10) NOT NULL,
   `card_info` varchar(100) COLLATE latin1_spanish_ci NOT NULL,
   `code` varchar(100) COLLATE latin1_spanish_ci NOT NULL,
   `status` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
   `amount` varchar(250) COLLATE latin1_spanish_ci NOT NULL,
   `customer_id` varchar(200) COLLATE latin1_spanish_ci NOT NULL,
-  `type` int(2) NOT NULL
+  `type` int(2) NOT NULL,
+  `order_id` varchar(100) COLLATE latin1_spanish_ci NOT NULL,
+  `name` varchar(100) COLLATE latin1_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Dumping data for table `payconek`
+--
+
+INSERT INTO `payconek` (`id_pay`, `id_reserva`, `card_info`, `code`, `status`, `amount`, `customer_id`, `type`, `order_id`, `name`) VALUES
+(1, 1, '5100- visa- debit', '475918', 'paid', '500', 'cus_2kDTYxrGb8Be2xgZ2', 2, 'ord_2kDTYxhAWvT78M28s', 'reserva,1'),
+(2, 1, '5100- visa- debit', '409655', 'paid', '500', 'cus_2kDTkXw2tLvCijvMH', 2, 'ord_2kDTkXw2tLvCG49m7', 'reserva,1'),
+(3, 1, '5100- visa- debit', '155137', 'paid', '500', 'cus_2kDTm27T8k7ciLQup', 2, 'ord_2kDTm2rGewYy3f7TK', 'reserva,1'),
+(4, 1, '5100- visa- debit', '080145', 'paid', '600', 'cus_2kDTmTx8MipKbne4o', 2, 'ord_2kDTmTx8MipKSti1n', 'reserva,1'),
+(5, 1, '5100- visa- debit', '702536', 'paid', '500', 'cus_2kDUV3jZxD2vT1uMd', 2, 'ord_2kDUV7Yx22eujS1Zu', 'reserva,1'),
+(6, 1, '5100- visa- debit', '733576', 'paid', '500', 'cus_2kDUXby9Y5PMucdg1', 2, 'ord_2kDUXcFY56yUJaWkL', 'reserva,1'),
+(7, 1, '5100- visa- debit', '265431', 'paid', '50000', 'cus_2kDVm5c2gWiZHfwxB', 2, 'ord_2kDVm6LrCiGXoeYUd', 'reserva,1'),
+(8, 1, '8431- american_express- credit', '769639', 'paid', '500000', 'cus_2kDVwEjrBbufeVKKR', 2, 'ord_2kDVwEjrBbvE5qg2Z', 'reserva,1'),
+(9, 1, '8431- american_express- credit', '165482', 'paid', '30000', 'cus_2kDWFCJdQ5NqmpXCg', 2, 'ord_2kDWFCtLr59YErU72', 'reserva,1'),
+(10, 1, '5100- visa- debit', '573616', 'paid', '20000', 'cus_2kDWFdXmZgJwq8PBn', 2, 'ord_2kDWFdzCYrJ6Mq6Tx', 'reserva,1'),
+(11, 1, '5100- visa- debit', '671421', 'paid', '30000', 'cus_2kDWGBtY1dDbFNReo', 2, 'ord_2kDWGCUFTdFpEUBrD', 'reserva,1');
 
 -- --------------------------------------------------------
 
@@ -200,8 +217,7 @@ ALTER TABLE `paquetes`
 --
 ALTER TABLE `payconek`
   ADD PRIMARY KEY (`id_pay`),
-  ADD KEY `id_paquete` (`id_paquete`),
-  ADD KEY `id_usuario` (`id_usuario`);
+  ADD KEY `id_reserva` (`id_reserva`);
 
 --
 -- Indexes for table `promo`
@@ -245,7 +261,7 @@ ALTER TABLE `paquetes`
 -- AUTO_INCREMENT for table `payconek`
 --
 ALTER TABLE `payconek`
-  MODIFY `id_pay` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pay` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `reservas`
@@ -273,8 +289,7 @@ ALTER TABLE `paquetes`
 -- Constraints for table `payconek`
 --
 ALTER TABLE `payconek`
-  ADD CONSTRAINT `payconek_ibfk_1` FOREIGN KEY (`id_paquete`) REFERENCES `paquetes` (`id_paquete`),
-  ADD CONSTRAINT `payconek_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`email`);
+  ADD CONSTRAINT `payconek_ibfk_1` FOREIGN KEY (`id_reserva`) REFERENCES `reservas` (`id_reserva`);
 
 --
 -- Constraints for table `promo`
