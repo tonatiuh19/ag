@@ -160,7 +160,6 @@ if (isset($_SESSION['email'])){
 								echo "Cambiar paquete <span class=\"fas fa-arrow-circle-right\"></span></a>\n";
 								echo "</form>\n"; 
 								echo "<form action=\"payments/\" id=\"my_form2\" method=\"post\">\n";
-								echo "  <input type=\"hidden\"  name=\"cambio\" value=\"".$row["id_viaje"]."\">\n";  
 								echo "  <input type=\"hidden\"  name=\"reserva\" value=\"".$row["id_reserva"]."\">\n"; 
 								echo "                        <a href=\"javascript:{}\" onclick=\"document.getElementById('my_form2').submit();\">\n"; 
 								echo "Mis pagos <span class=\"fas fa-arrow-circle-right\"></span></a>\n";
@@ -254,7 +253,7 @@ if (isset($_SESSION['email'])){
 								echo "      <div class=\"modal-body\">\n"; 
 								?>
 									<form action="pay.php" method="POST" id="card-form">
-									  <span class="card-errors"></span>
+									  <p><span class="card-errors"></span></p>
 									  <div class="container">
 										    <div class="row">
 										        <div class="col-sm-12 form-group text-white bg-dark rounded">

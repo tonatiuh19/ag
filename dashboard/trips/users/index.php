@@ -574,12 +574,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "            <td>".$row2["apellido"]."</td>\n";
                 echo "            <td>".$row2["email"]." <button type=\"button\" class=\"btn btn-warning btn-sm\" data-toggle=\"modal\" data-target=\"#mailModal".$row2["id_reserva"]."\"><span class=\"fas fa-envelope\"></span></button></td>\n";
                 echo "            <td>".$row2["telefono"]."</td>\n";
-                $falta = floatval($row2["precio"]) - floatval($row2["abonado"]);
+                $sqls = "SELECT SUM(amount) AS Total FROM payconek where id_reserva='".$row2["id_reserva"]."' and status='paid'";
+                  $results = $conn->query($sqls);
+
+                  if ($results->num_rows > 0) {
+                      // output data of each row
+                      while($rows = $results->fetch_assoc()) {
+                          $nuevo_precio = floatval($rows["Total"]/100);
+                      }
+                  } else {
+                      echo "0 results";
+                  }
+                $falta = floatval($row2["precio"]) - $nuevo_precio;
                 $validationinputmax = floatval($row2["precio"])+1;
                 if ($falta == 0) {
                   echo "            <td class=\"table-success\" colspan=\"2\" align=\"center\"><b>Pagado</b> <button type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#exampleModal".$row2["id_reserva"]."\"><span class=\"fas fa-ticket-alt\"></span></button></td>\n";
                 }else{
-                  echo "            <td class=\"table-success\">$ ".number_format($row2["abonado"])." <button type=\"button\" class=\"btn btn-warning btn-sm\" data-toggle=\"modal\" data-target=\"#exampleModal".$row2["id_reserva"]."\"><span class=\"far fa-edit\"></span></button></td>\n";
+                  echo "            <td class=\"table-success\">"; 
+                  echo "$ ".number_format($nuevo_precio);
+                  //echo "<button type=\"button\" class=\"btn btn-warning btn-sm\" data-toggle=\"modal\" data-target=\"#exampleModal".$row2["id_reserva"]."\"><span class=\"far fa-edit\"></span></button>";
+                  echo "</td>\n";
                   echo "            <td class=\"table-danger\">$ ".number_format($falta)."</td>\n";
                 }
                 echo "<div class=\"modal fade\" id=\"exampleModal".$row2["id_reserva"]."\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n";

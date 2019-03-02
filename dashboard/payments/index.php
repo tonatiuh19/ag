@@ -128,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <th>Referencia</th>
               <th>Monto</th>
               <th>Medio</th>
-              <th>Factura</th>
+              <th>Solicitar Factura</th>
             </tr>
             <?php
             if ($result->num_rows > 0) {
@@ -136,9 +136,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 while($row = $result->fetch_assoc()) {
                     echo "<tr>\n"; 
                     echo "  <td>".$row["order_id"]."</td>\n"; 
-                    echo "  <td>$ ".$row["amount"].".00</td>\n"; 
+                    echo "  <td>$ ".number_format(($row["amount"]/100),2)."</td>\n"; 
                     echo "  <td>".$row["card_info"]."</td>\n"; 
-                    echo "  <td></td>\n"; 
+                    echo "  <td><button type=\"button\" class=\"btn btn-primary\"><i class=\"fas fa-receipt\"></i></button></td>\n"; 
                     echo "</tr>\n";
                 }
             } else {
