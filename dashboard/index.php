@@ -134,19 +134,14 @@ if (isset($_SESSION['email'])){
              //echo "<div class=\"jumbotron jumbotron-fluid\">\n"; 
 							echo "  <div class=\"container\">\n";  
 							while($row = $result->fetch_assoc()) {
+
 								echo "<div class=\"row\">\n";
 								$falta = floatval($row["precio"]) - floatval($row["abonado"]);
 								echo "<div class=\"card\">\n"; 
 								echo "  <div class=\"card-body\">\n";
-								$sql2 = "SELECT titulo FROM viajes where id_viaje='".$row["id_viaje"]."'";
-								$result2 = $conn->query($sql2);
-								if ($result2->num_rows > 0) {
-									while($row2 = $result2->fetch_assoc()) {
-										echo "    <h4 class=\"card-title\"><span class=\"fas fa-plane\"></span> ".$row2["titulo"]."</h4>\n";
-										echo "<b>ID Reserva: </b>".$row["id_reserva"]."";
-
-									}
-								}
+								echo "    <h4 class=\"card-title\"><span class=\"fas fa-plane\"></span> ".$row["titulo"]."</h4>\n";
+								echo "<b>ID Reserva: </b>".$row["id_reserva"]."";
+								
 								if ($falta <= 0) {
 									echo "    <br><p class=\"card-text\">¡A preparar maletas!</p>\n";    
 								}else{
@@ -169,177 +164,15 @@ if (isset($_SESSION['email'])){
 								echo "  <input type=\"hidden\"  name=\"cambio\" value=\"".$row["id_reserva"]."\">\n";  
 								echo "    <br><a href=\"javascript:{}\" onclick=\"document.getElementById('my_form2').submit();\" class=\"btn btn-success btn-sm\">Abonar <span class=\"fas fa-plus-circle\"></span></a>\n";
 								echo "</form>\n";*/
-								echo "<p><button type=\"button\" class=\"btn btn-success btn-smy\" data-toggle=\"modal\" data-target=\"#exampleModal\">\n"; 
+								echo "<p><button type=\"button\" class=\"btn btn-success btn-smy\" data-toggle=\"modal\" data-target=\"#exampleModal".$row["id_reserva"]."\">\n"; 
 								echo "Abonar <span class=\"fas fa-plus-circle\"></span>\n"; 
 								echo "</button></p>\n";
 								echo "  </div>\n";
 								echo "</div>\n";
-								echo "<div class=\"modal fade\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n"; 
-								echo "  <div class=\"modal-dialog\" role=\"document\">\n"; 
-								echo "    <div class=\"modal-content\">\n"; 
-								echo "      <div class=\"modal-header\">\n"; 
-								echo "        <h5 class=\"modal-title\" id=\"exampleModalLabel\">".$row["titulo"]."</h5>\n"; 
+								echo "&nbsp;";
+								
 								
 
-								echo "      </div>\n"; 
-								echo "      <div class=\"modal-body\">\n"; 
-								echo "<div class=\"container\">\n"; 
-								echo "    <div class=\"row\">\n"; 
-								echo "        <div class=\"col-sm-6\">"; 
-								echo "<input type=\"radio\" name=\"data\" onclick=\"oxxo()\" id=\"oxxo\"><img src=\"oxxo.png\">\n"; 
-								echo "</div>\n"; 
-								echo "        <div class=\"col-sm-6\">"; 
-								echo "<input type=\"radio\" name=\"data\" onclick=\"paypal()\" id=\"paypal\"/> <span class=\"fab fa-cc-paypal fa-4x\"></span>\n"; 
-								echo "</div>\n"; 
-								echo "        <div class=\"col-sm-10\">"; 
-								echo "<input type=\"radio\" name=\"data\" onclick=\"tarjeta()\" id=\"tarjeta\" checked/> <span class=\"fab fa-cc-mastercard fa-4x\"></span> <span class=\"fab ffab fa-cc-visa fa-4x\"></span> <span class=\"fab fa-cc-amex fa-4x\"></span>\n";
-								echo "</div>\n"; 
-								echo "        <div class=\"col-sm-2\"></div>\n"; 
-								echo "    </div>\n"; 
-								echo "</div>\n";
-
-								
-								echo "      </div>\n"; 
-								echo "      <div class=\"modal-footer\">\n"; 
-
-								echo " <div id=\"Oxxo\" style=\"display:none\">\n"; 
-								echo "  <button type=\"button\" class=\"btn btn-warning\">Siguiente ></button>\n"; 
-								echo "</div>\n"; 
-								echo " <div id=\"Tarjeta\" style=\"display:block\">\n"; 
-								echo "<a href=\"#Tarjetamodal\" class=\"btn btn-info\" data-toggle=\"modal\" data-dismiss=\"modal\">Siguiente ></a>\n";
-								echo "</div>\n"; 
-								echo " <div id=\"Paypal\" style=\"display:none\">\n"; 
-								echo "  <button type=\"button\" class=\"btn btn-primary\">Siguiente ></button>\n"; 
-								echo "</div>\n"; 
-								echo "\n"; 
-								echo "<script type=\"text/javascript\">\n"; 
-								echo "function oxxo() {\n"; 
-								echo "    document.getElementById('Tarjeta').style.display = \"none\";\n"; 
-								echo "    document.getElementById('Paypal').style.display = \"none\";\n"; 
-								echo "    document.getElementById('Oxxo').style.display = \"block\";\n"; 
-								echo "}\n"; 
-								echo "function tarjeta() {\n"; 
-								echo "    document.getElementById('Tarjeta').style.display = \"block\";\n"; 
-								echo "    document.getElementById('Paypal').style.display = \"none\";\n"; 
-								echo "    document.getElementById('Oxxo').style.display = \"none\";\n"; 
-								echo "}\n"; 
-								echo "function paypal() {\n"; 
-								echo "    document.getElementById('Tarjeta').style.display = \"none\";\n"; 
-								echo "    document.getElementById('Paypal').style.display = \"block\";\n"; 
-								echo "    document.getElementById('Oxxo').style.display = \"none\";\n"; 
-								echo "}\n"; 
-								echo "\n"; 
-								echo "</script>\n";
-
-								//echo "        <button type=\"button\" class=\"btn btn-primary\">Save changes</button>\n"; 
-								echo "      </div>\n"; 
-								echo "    </div>\n"; 
-								echo "  </div>\n"; 
-								echo "</div>\n";
-
-
-								echo "<div class=\"modal\" id=\"Tarjetamodal\">\n"; 
-								echo "  <div class=\"modal-dialog modal-lg\">\n"; 
-								echo "    <div class=\"modal-content\">\n"; 
-								echo "\n"; 
-								echo "      <!-- Modal Header -->\n"; 
-								echo "      <div class=\"modal-header\">\n"; 
-								echo "        <h4 class=\"modal-title\">".$row["titulo"]."</h4>\n";
-
-								echo "        <button type=\"button\" class=\"close\" data-toggle=\"tooltip\" data-placement=\"right\" title=\"Encriptamos los datos en forma segura (TLS) y así cumplimos con los más altos estándares de seguridad online. PCI-DSS monitorea y certifica lo que hacemos.\"><span class=\"fas fa-lock\"></span></button>\n"; 
-								echo "      </div>\n"; 
-								echo "\n"; 
-								echo "      <!-- Modal body -->\n"; 
-								echo "      <div class=\"modal-body\">\n"; 
-								?>
-									<form action="pay.php" method="POST" id="card-form">
-									  <p><span class="card-errors"></span></p>
-									  <div class="container">
-										    <div class="row">
-										        <div class="col-sm-12 form-group text-white bg-dark rounded">
-														<label>Monto:</label>
-												      <div class="input-group mb-3">
-														  <div class="input-group-prepend">
-														    <span class="input-group-text">$</span>
-														  </div>
-														  <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" name="monto" min="3" required>
-														  <div class="input-group-append">
-														    <span class="input-group-text">.00</span>
-														  </div>
-														</div>
-
-												      <p></p>
-										        </div>
-										        <?php
-										        echo "<input type=\"hidden\" name=\"reserva\" value=\"".$row["id_reserva"]."\">\n";
-										        ?>
-										        <hr class="style5">
-										        <div class="col-sm-12">
-												      <label>Nombre que aparece en tarjeta: </label>
-												      <input type="text" size="20" class="form-control" data-conekta="card[name]" required>
-										        </div>
-										        <div class="col-sm-12">
-										        	  <label>Numero de tarjeta:</label>
-												      <input type="text" class="form-control" size="20" data-conekta="card[number]" required>
-													        </div>
-										        <div class="col-sm-4">
-												      <label>Fecha de expiracion:</label>
-												      <?php
-												      echo "      <select id=\"inputState\" class=\"form-control\" data-conekta=\"card[exp_month]\" required>\n"; 
-															echo "    <option value=''>Mes</option>\n"; 
-															echo "    <option value='01'>01 - Enero</option>\n"; 
-															echo "    <option value='02'>02 - Febrero</option>\n"; 
-															echo "    <option value='03'>03 - Marzo</option>\n"; 
-															echo "    <option value='04'>04 - Abril</option>\n"; 
-															echo "    <option value='05'>05 - Mayo</option>\n"; 
-															echo "    <option value='06'>06 - Junio</option>\n"; 
-															echo "    <option value='07'>07 - Julio</option>\n"; 
-															echo "    <option value='08'>08 - Agosto</option>\n"; 
-															echo "    <option value='09'>09 - Septiembre</option>\n"; 
-															echo "    <option value='10'>10 - Octubre</option>\n"; 
-															echo "    <option value='11'>11 - Noviembre</option>\n"; 
-															echo "    <option value='12'>12 - Diciembre</option>\n"; 
-															echo "</select> \n";
-												      ?>
-										        </div>
-										        <div class="col-sm-5">
-										        	<label>&nbsp;</label>
-		<?php
-											    	echo "      <select id=\"inputState\" class=\"form-control\" data-conekta=\"card[exp_year]\" required>\n"; 
-													echo "    <option value=''>Año</option>\n";  
-													echo "    <option value='2019'>2019</option>\n"; 
-													echo "    <option value='2020'>2020</option>\n"; 
-													echo "    <option value='2021'>2021</option>\n"; 
-													echo "    <option value='2022'>2022</option>\n"; 
-													echo "    <option value='2023'>2023</option>\n"; 
-													echo "    <option value='2024'>2024</option>\n";
-													echo "      </select>\n";
-											    ?>
-										        </div>
-										        <div class="col-sm-3">
-										        	<label>CVC:
-										        	<?php
-										        	echo "  <a href=\"#\" data-toggle=\"tooltip\" title=\"<img class='img-thumbnail' src='cvc.png'/>\">\n"; 
-													echo "    <span class=\"fas fa-question-circle\"></span>\n"; 
-													echo "  </a>\n";
-										        	?>
-										        	</label>
-												      <input type="text" class="form-control" size="4" data-conekta="card[cvc]" required>
-										        </div>
-										    </div>
-										</div>
-									  
-								<?php
-								echo "      <!-- Modal footer -->\n"; 
-								echo "      <div class=\"modal-footer\">\n";
-								echo "<a href=\"#exampleModal\" data-toggle=\"modal\" class=\"btn btn-info\" data-dismiss=\"modal\">< Atras</a>\n"; 
-								
-								echo "        <input type=\"submit\" value=\"Finalizar\" class=\"btn btn-success\">\n"; 
-								echo "      </div>\n"; 
-								echo "</form>";
-								echo "    </div>\n"; 
-								echo "  </div>\n"; 
-								echo "</div>\n";
 							}
             //echo "</div>\n";
 							echo "</div>\n";
@@ -475,6 +308,254 @@ if (isset($_SESSION['email'])){
 </main>
 </div>
 </div>
+<?php
+$sqld = "SELECT reservas.abonado, reservas.pagado, paquetes.precio, paquetes.id_viaje, reservas.id_reserva, viajes.titulo FROM reservas 
+						INNER JOIN paquetes ON reservas.id_paquete = paquetes.id_paquete 
+						LEFT JOIN viajes ON paquetes.id_viaje = viajes.id_viaje
+						WHERE reservas.email='".$mail."'";
+$resultd = $conn->query($sqld);
+
+if ($resultd->num_rows > 0) {
+    // output data of each row
+    while($rowd = $resultd->fetch_assoc()) {
+    	echo "<div class=\"modal fade\" id=\"exampleModal".$rowd["id_reserva"]."\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n";
+        ?>
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><?php echo $rowd["titulo"];?></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p>Elige tu metodo de pago:</p>
+                        <?php echo "<button type=\"button\" class=\"btn btn-lg px-5 btn-light\" data-toggle=\"modal\" data-target=\"#Tarjetamodal".$rowd["id_reserva"]."\">\n"; ?>
+                                <img src="img/tarjetas.png" height="60" alt="USA flag">
+                            </button>&nbsp;
+                            <?php echo "<button type=\"button\" class=\"btn btn-lg px-5 btn-light\" data-toggle=\"modal\" data-target=\"#OxxoPayment".$rowd["id_reserva"]."\">\n"; ?>
+                                <img src="img/oxxo.png" height="60" alt="USA flag">
+                            </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <?php } 
+   
+} else {
+    echo "0 results";
+}
+$sqlr = "SELECT reservas.abonado, reservas.pagado, paquetes.precio, paquetes.id_viaje, reservas.id_reserva, viajes.titulo FROM reservas 
+						INNER JOIN paquetes ON reservas.id_paquete = paquetes.id_paquete 
+						LEFT JOIN viajes ON paquetes.id_viaje = viajes.id_viaje
+						WHERE reservas.email='".$mail."'";
+$resultr = $conn->query($sqlr);
+
+if ($resultr->num_rows > 0) {
+    // output data of each row
+    while($rowr = $resultr->fetch_assoc()) {
+    	echo "<div class=\"modal fade\" id=\"Tarjetamodal".$rowr["id_reserva"]."\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n"; 
+		echo "  <div class=\"modal-dialog modal-lg\" role=\"document\">\n"; 
+		echo "    <div class=\"modal-content\">\n"; 
+		echo "      <div class=\"modal-header\">\n"; 
+		echo "        <h5 class=\"modal-title\" id=\"exampleModalLabel\">".$rowr["titulo"]."</h5>\n"; 
+		echo "        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n"; 
+		echo "          <span aria-hidden=\"true\">&times;</span>\n"; 
+		echo "        </button>\n"; 
+		echo "      </div>\n"; 
+		echo "      <div class=\"modal-body\">\n"; 
+
+		echo "<form action=\"pay.php\" method=\"POST\" id=\"card-form\">\n"; 
+		echo "                    <p><span class=\"card-errors\"></span></p>\n"; 
+		echo "                    <div class=\"container\">\n"; 
+		echo "                        <div class=\"row\">\n"; 
+		echo "                            <div class=\"col-sm-12 form-group text-white bg-dark rounded\">\n"; 
+		echo "                            <label>Monto:</label>\n"; 
+		echo "                              <div class=\"input-group mb-3\">\n"; 
+		echo "                              <div class=\"input-group-prepend\">\n"; 
+		echo "                                <span class=\"input-group-text\">$</span>\n"; 
+		echo "                              </div>\n"; 
+		echo "                              <input type=\"number\" class=\"form-control\" aria-label=\"Amount (to the nearest dollar)\" name=\"monto\" min=\"3\" required>\n"; 
+		echo "                              <div class=\"input-group-append\">\n"; 
+		echo "                                <span class=\"input-group-text\">.00</span>\n"; 
+		echo "                              </div>\n"; 
+		echo "                            </div>\n"; 
+		echo "\n"; 
+		echo "                              <p></p>\n"; 
+		echo "                            </div>\n";
+		echo "      </div>\n"; 
+		echo "<input type=\"hidden\" name=\"reserva\" value=\"".$rowr["id_reserva"]."\">\n";
+		echo "<hr class=\"style5\">\n"; 
+		echo "                            <div class=\"col-sm-12\">\n"; 
+		echo "                              <label>Nombre que aparece en tarjeta: </label>\n"; 
+		echo "                              <input type=\"text\" size=\"20\" class=\"form-control\" data-conekta=\"card[name]\" required>\n"; 
+		echo "                            </div>\n"; 
+		echo "                            <div class=\"col-sm-12\">\n"; 
+		echo "                                <label>Numero de tarjeta:</label>\n"; 
+		echo "                              <input type=\"text\" class=\"form-control\" size=\"20\" data-conekta=\"card[number]\" required>\n"; 
+		echo "                                  </div>\n"; 
+		echo "                            <div class=\"col-sm-4\">\n"; 
+		echo "                              <label>Fecha de expiracion:</label>\n";
+		   echo "      <select id=\"inputState\" class=\"form-control\" data-conekta=\"card[exp_month]\" required>\n"; 
+                              echo "    <option value=''>Mes</option>\n"; 
+                              echo "    <option value='01'>01 - Enero</option>\n"; 
+                              echo "    <option value='02'>02 - Febrero</option>\n"; 
+                              echo "    <option value='03'>03 - Marzo</option>\n"; 
+                              echo "    <option value='04'>04 - Abril</option>\n"; 
+                              echo "    <option value='05'>05 - Mayo</option>\n"; 
+                              echo "    <option value='06'>06 - Junio</option>\n"; 
+                              echo "    <option value='07'>07 - Julio</option>\n"; 
+                              echo "    <option value='08'>08 - Agosto</option>\n"; 
+                              echo "    <option value='09'>09 - Septiembre</option>\n"; 
+                              echo "    <option value='10'>10 - Octubre</option>\n"; 
+                              echo "    <option value='11'>11 - Noviembre</option>\n"; 
+                              echo "    <option value='12'>12 - Diciembre</option>\n"; 
+                              echo "</select> \n";
+                              echo " </div>\n"; 
+echo "                            <div class=\"col-sm-5\">\n"; 
+echo "                              <label>&nbsp;</label>\n";
+ echo "      <select id=\"inputState\" class=\"form-control\" data-conekta=\"card[exp_year]\" required>\n"; 
+                          echo "    <option value=''>Año</option>\n";  
+                          echo "    <option value='2019'>2019</option>\n"; 
+                          echo "    <option value='2020'>2020</option>\n"; 
+                          echo "    <option value='2021'>2021</option>\n"; 
+                          echo "    <option value='2022'>2022</option>\n"; 
+                          echo "    <option value='2023'>2023</option>\n"; 
+                          echo "    <option value='2024'>2024</option>\n";
+                          echo "      </select>\n";
+                          echo " </div>\n"; 
+echo "                            <div class=\"col-sm-3\">\n"; 
+echo "                              <label>CVC:\n";
+ echo "  <a href=\"#\" data-toggle=\"tooltip\" title=\"<img class='img-thumbnail' src='cvc.png'/>\">\n"; 
+                          echo "    <span class=\"fas fa-question-circle\"></span>\n"; 
+                          echo "  </a>\n";
+                          echo "</label>\n"; 
+echo "                              <input type=\"text\" class=\"form-control\" size=\"4\" data-conekta=\"card[cvc]\" required>\n"; 
+echo "                            </div>\n"; 
+echo "                        </div>\n"; 
+echo "                    </div>\n";
+
+
+		echo "      <div class=\"modal-footer\">\n"; 
+		echo "        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n"; 
+		echo "        <input type=\"submit\" value=\"Finalizar\" class=\"btn btn-success\">\n"; 
+                echo "      </div>\n"; 
+                echo "</form>";
+		echo "    </div>\n"; 
+		echo "  </div>\n"; 
+		echo "</div>\n";
+                /*echo "<div class=\"modal fade\" id=\"Tarjetamodal".$rowr["id_reserva"]."\">\n"; 
+                echo "  <div class=\"modal-dialog modal-lg\">\n"; 
+                echo "    <div class=\"modal-content\">\n"; 
+                echo "\n"; 
+                echo "      <!-- Modal Header -->\n"; 
+                echo "      <div class=\"modal-header\">\n"; 
+                echo "        <h4 class=\"modal-title\">".$rowr["titulo"]."</h4>\n";
+
+                echo "        <button type=\"button\" class=\"close\" data-toggle=\"tooltip\" data-placement=\"right\" title=\"Encriptamos los datos en forma segura (TLS) y así cumplimos con los más altos estándares de seguridad online. PCI-DSS monitorea y certifica lo que hacemos.\"><span class=\"fas fa-lock\"></span></button>\n"; 
+                echo "      </div>\n"; 
+                echo "\n"; 
+                echo "      <!-- Modal body -->\n"; 
+                echo "      <div class=\"modal-body\">\n"; 
+                ?>
+                  <form action="pay.php" method="POST" id="card-form">
+                    <p><span class="card-errors"></span></p>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12 form-group text-white bg-dark rounded">
+                            <label>Monto:</label>
+                              <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">$</span>
+                              </div>
+                              <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" name="monto" min="3" required>
+                              <div class="input-group-append">
+                                <span class="input-group-text">.00</span>
+                              </div>
+                            </div>
+
+                              <p></p>
+                            </div>
+                            <?php
+                            echo "<input type=\"hidden\" name=\"reserva\" value=\"".$rowr["id_reserva"]."\">\n";
+                            ?>
+                            <hr class="style5">
+                            <div class="col-sm-12">
+                              <label>Nombre que aparece en tarjeta: </label>
+                              <input type="text" size="20" class="form-control" data-conekta="card[name]" required>
+                            </div>
+                            <div class="col-sm-12">
+                                <label>Numero de tarjeta:</label>
+                              <input type="text" class="form-control" size="20" data-conekta="card[number]" required>
+                                  </div>
+                            <div class="col-sm-4">
+                              <label>Fecha de expiracion:</label>
+                              <?php
+                              echo "      <select id=\"inputState\" class=\"form-control\" data-conekta=\"card[exp_month]\" required>\n"; 
+                              echo "    <option value=''>Mes</option>\n"; 
+                              echo "    <option value='01'>01 - Enero</option>\n"; 
+                              echo "    <option value='02'>02 - Febrero</option>\n"; 
+                              echo "    <option value='03'>03 - Marzo</option>\n"; 
+                              echo "    <option value='04'>04 - Abril</option>\n"; 
+                              echo "    <option value='05'>05 - Mayo</option>\n"; 
+                              echo "    <option value='06'>06 - Junio</option>\n"; 
+                              echo "    <option value='07'>07 - Julio</option>\n"; 
+                              echo "    <option value='08'>08 - Agosto</option>\n"; 
+                              echo "    <option value='09'>09 - Septiembre</option>\n"; 
+                              echo "    <option value='10'>10 - Octubre</option>\n"; 
+                              echo "    <option value='11'>11 - Noviembre</option>\n"; 
+                              echo "    <option value='12'>12 - Diciembre</option>\n"; 
+                              echo "</select> \n";
+                              ?>
+                            </div>
+                            <div class="col-sm-5">
+                              <label>&nbsp;</label>
+    <?php
+                            echo "      <select id=\"inputState\" class=\"form-control\" data-conekta=\"card[exp_year]\" required>\n"; 
+                          echo "    <option value=''>Año</option>\n";  
+                          echo "    <option value='2019'>2019</option>\n"; 
+                          echo "    <option value='2020'>2020</option>\n"; 
+                          echo "    <option value='2021'>2021</option>\n"; 
+                          echo "    <option value='2022'>2022</option>\n"; 
+                          echo "    <option value='2023'>2023</option>\n"; 
+                          echo "    <option value='2024'>2024</option>\n";
+                          echo "      </select>\n";
+                          ?>
+                            </div>
+                            <div class="col-sm-3">
+                              <label>CVC:
+                              <?php
+                              echo "  <a href=\"#\" data-toggle=\"tooltip\" title=\"<img class='img-thumbnail' src='cvc.png'/>\">\n"; 
+                          echo "    <span class=\"fas fa-question-circle\"></span>\n"; 
+                          echo "  </a>\n";
+                              ?>
+                              </label>
+                              <input type="text" class="form-control" size="4" data-conekta="card[cvc]" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                <?php
+                echo "      <!-- Modal footer -->\n"; 
+                echo "      <div class=\"modal-footer\">\n";
+                echo "<a href=\"#Tarjetamodal\" data-toggle=\"modal\" class=\"btn btn-info\" data-dismiss=\"modal\">< Atras</a>\n"; 
+                
+                echo "        <input type=\"submit\" value=\"Finalizar\" class=\"btn btn-success\">\n"; 
+                echo "      </div>\n"; 
+                echo "</form>";
+                echo "    </div>\n"; 
+                echo "  </div>\n"; 
+                echo "</div>\n";*/}
+                
+} else {
+    echo "0 results";
+}
+
+?>
+
+
+
+
 <script type="text/javascript">
 	function setTwoNumberDecimal(event) {
 	    this.value = parseFloat(this.value).toFixed(2);
