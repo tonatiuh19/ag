@@ -95,7 +95,7 @@ if ($result->num_rows > 0) {
                   "- ". $order->charges[0]->payment_method->brand .
                   "- ". $order->charges[0]->payment_method->type;*/
 
-            $sql = "INSERT INTO payconek (order_id, amount, customer_id, name, code, card_info, type, id_reserva, status)
+           $sql = "INSERT INTO payconek (order_id, amount, customer_id, name, code, card_info, type, id_reserva, status)
             VALUES ('".$order->id."', '".$order->amount."', '".$order->currency."','".$order->line_items[0]->name."','".$order->charges[0]->payment_method->auth_code."', '".$order->charges[0]->payment_method->last4 .
             "- ". $order->charges[0]->payment_method->brand .
             "- ". $order->charges[0]->payment_method->type."','2','".$reserva."','".$order->payment_status."')";
