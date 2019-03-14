@@ -345,7 +345,18 @@ if ($resultd->num_rows > 0) {
 						echo "</script>\n"; ?>
                                 <img src="img/tarjetas.png" height="60" alt="USA flag">
                             </button>&nbsp;
-                            <?php echo "<button type=\"button\" class=\"btn btn-lg px-5 btn-light\" data-toggle=\"modal\" data-target=\"#OxxoPayment".$rowd["id_reserva"]."\">\n"; ?>
+                            <?php echo "<button type=\"button\" id=\"btnSave2".$rowd["id_reserva"]."\" class=\"btn btn-lg px-5 btn-light\" data-toggle=\"modal\" data-target=\"#Oxxomodal\">\n"; 
+                             echo "<script type=\"text/javascript\">\n"; 
+						echo "  $(function() {\n"; 
+						echo "    $('#btnSave2".$rowd["id_reserva"]."').click(function() {\n"; 
+						echo "      var value = $('#titulo".$rowd["id_reserva"]."').val();\n"; 
+						echo "      var value2 = $('#reserva".$rowd["id_reserva"]."').val();\n"; 
+						echo "      $('#cambioH2').html(value);\n"; 
+						echo "      $('#id_reserva_modal2').val(value2);\n"; 
+						echo "    });\n"; 
+						echo "  });\n"; 
+						echo "</script>\n";
+                            ?>
                                 <img src="img/oxxo.png" height="60" alt="USA flag">
                             </button>
                       </div>
@@ -440,7 +451,37 @@ soluciones más avanzadas y el mayor radar de detección de malversaciones a niv
 		</div>
     	
 
-
+    	<div class="modal fade" id="Oxxomodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-lg" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="cambioH2">Oxxo Pay</h5>
+		        
+		          <button type="button" class="btn btn-link text-dark" data-toggle="tooltip" data-placement="left" title="Estamos respaldados por un equipo de expertos para combatir fraudes. Contamos con las 
+soluciones más avanzadas y el mayor radar de detección de malversaciones a nivel mundial.">
+					  <i class="fas fa-lock"></i>
+					</button>
+		        
+		      </div>
+		      <div class="modal-body">
+		        <form action="oxxo_pay/" method="POST" >
+		          <div class="container text-light bg-dark">
+			          <div class="form-group">
+					    <label for="exampleInputEmail1" class="col-form-label-lg">Monto:</label>
+					    <input type="number" placeholder="$ 500" class="form-control form-control-lg" id="price" name="monto" required><br>
+					    <input type="hidden" name="reserva" id="id_reserva_modal2" value="">
+					  </div>
+				  </div>
+				 
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Atras</button>
+		        <button type="submit" class="btn btn-success">Generar Ticket</button>
+		        </form>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 
 
 <script type="text/javascript">
