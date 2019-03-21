@@ -131,10 +131,10 @@ if (isset($_SESSION['email'])){
 
               echo "                      </div>\n"; 
               echo "                    </div>\n"; 
-              echo "                    <img class=\"img-fluid\" src=\"https://d30y9cdsu7xlg0.cloudfront.net/png/6446-200.png\" alt=\"\">\n"; 
+              echo "<br>\n";
               echo "                  </a>\n"; 
               echo "                  <div class=\"portfolio-caption\">\n"; 
-              echo "                    <h4>".$row["titulo"]."</h4>\n";
+              echo "                    <h4><i class=\"fas fa-dizzy text-dark\"></i> ".$row["titulo"]."</h4>\n";
               $sql2 = "SELECT count(id_paquete) as paquete FROM paquetes WHERE id_viaje='".$row["id_viaje"]."'";
               $result2 = $conn->query($sql2);
 
@@ -147,7 +147,7 @@ if (isset($_SESSION['email'])){
               } else {
 
               }
-              echo "                    <p class=\"text-muted\">Viaje inactivo. En espera de activacion.</p>\n";
+              echo "                    <p class=\"text-muted\">Viaje inactivo.<span class=\"text-light bg-dark\"> En espera de activacion. </span></p>\n";
               echo "                  </div>\n"; 
               echo "                </div>\n";
             }else{

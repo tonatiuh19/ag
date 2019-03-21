@@ -50,6 +50,7 @@ if (isset($_SESSION['email'])){
 				<a class="nav-link" href="fin.php">Cerrar sesion</a>
 			</li>
 		</ul>
+
 	</nav>
 
 	<div class="container-fluid">
