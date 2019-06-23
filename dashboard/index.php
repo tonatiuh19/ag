@@ -125,67 +125,68 @@ if (isset($_SESSION['email'])){
 						<?php
 						require_once('cn.php');
 						$mail = $_SESSION['email'];
-						$sql = "SELECT reservas.abonado, reservas.pagado, paquetes.precio, paquetes.id_viaje, reservas.id_reserva, viajes.titulo FROM reservas 
-						INNER JOIN paquetes ON reservas.id_paquete = paquetes.id_paquete 
+						$sql = "SELECT reservas.abonado, reservas.pagado, paquetes.precio, paquetes.id_viaje, reservas.id_reserva, viajes.titulo FROM reservas
+						INNER JOIN paquetes ON reservas.id_paquete = paquetes.id_paquete
 						LEFT JOIN viajes ON paquetes.id_viaje = viajes.id_viaje
 						WHERE reservas.email='".$mail."'";
 						$result = $conn->query($sql);
 
 						if ($result->num_rows >= 1) {
-             //echo "<div class=\"jumbotron jumbotron-fluid\">\n"; 
-							echo "  <div class=\"container\">\n";  
+             //echo "<div class=\"jumbotron jumbotron-fluid\">\n";
+							echo "  <div class=\"container\">\n";
 							while($row = $result->fetch_assoc()) {
 
 								echo "<div class=\"row\">\n";
 								$falta = floatval($row["precio"]) - floatval($row["abonado"]);
-								echo "<div class=\"card\">\n"; 
+							
+								echo "<div class=\"card\">\n";
 								echo "  <div class=\"card-body\">\n";
 								echo "    <h4 class=\"card-title\"><span class=\"fas fa-plane\"></span> ".$row["titulo"]."</h4>\n";
 								echo "<b>ID Reserva: </b>".$row["id_reserva"]."";
-								
+
 								if ($falta <= 0) {
-									echo "    <br><p class=\"card-text\">¡A preparar maletas!</p>\n";    
+									echo "    <br><p class=\"card-text\">¡A preparar maletas!</p>\n";
 								}else{
 									echo "    <p class=\"card-text\">Te falta: <b>$ ".number_format($falta)."</b>\n";
-									echo "    <br>Abonado: <b>$ ".number_format($row["abonado"])."</b></p>\n";    
+									echo "    <br>Abonado: <b>$ ".number_format($row["abonado"])."</b></p>\n";
 								}
 								echo "<form action=\"change_package/\" id=\"my_form\" method=\"post\">\n";
-								echo "  <input type=\"hidden\"  name=\"cambio\" value=\"".$row["id_viaje"]."\">\n";  
-								echo "  <input type=\"hidden\"  name=\"reserva\" value=\"".$row["id_reserva"]."\">\n"; 
-								echo "                        <a href=\"javascript:{}\" onclick=\"document.getElementById('my_form').submit();\">\n"; 
+								echo "  <input type=\"hidden\"  name=\"cambio\" value=\"".$row["id_viaje"]."\">\n";
+								echo "  <input type=\"hidden\"  name=\"reserva\" value=\"".$row["id_reserva"]."\">\n";
+								echo "                        <a href=\"javascript:{}\" onclick=\"document.getElementById('my_form').submit();\">\n";
 								echo "Cambiar paquete <span class=\"fas fa-arrow-circle-right\"></span></a>\n";
-								echo "</form>\n"; 
+								echo "</form>\n";
 								echo "<form action=\"payments/\" id=\"my_form2\" method=\"post\">\n";
-								echo "  <input type=\"hidden\"  name=\"reserva\" value=\"".$row["id_reserva"]."\">\n"; 
-								echo "                        <a href=\"javascript:{}\" onclick=\"document.getElementById('my_form2').submit();\">\n"; 
+								echo "  <input type=\"hidden\"  name=\"reserva\" value=\"".$row["id_reserva"]."\">\n";
+								echo "                        <a href=\"javascript:{}\" onclick=\"document.getElementById('my_form2').submit();\">\n";
 								echo "Mis pagos <span class=\"fas fa-arrow-circle-right\"></span></a>\n";
-								echo "</form>\n"; 
-								echo "    <a href=\"#\" class=\"card-link\">Ver itinerario <span class=\"fas fa-arrow-circle-right\"></span></a>\n";
+								echo "</form>\n";
+								//echo "    <a href=\"#\" class=\"card-link\">Ver itinerario <span class=\"fas fa-arrow-circle-right\"></span></a>\n";
 								/*echo "<form action=\"pay/\" id=\"my_form2\" method=\"post\">\n";
-								echo "  <input type=\"hidden\"  name=\"cambio\" value=\"".$row["id_reserva"]."\">\n";  
+								echo "  <input type=\"hidden\"  name=\"cambio\" value=\"".$row["id_reserva"]."\">\n";
 								echo "    <br><a href=\"javascript:{}\" onclick=\"document.getElementById('my_form2').submit();\" class=\"btn btn-success btn-sm\">Abonar <span class=\"fas fa-plus-circle\"></span></a>\n";
 								echo "</form>\n";*/
-								echo "<p><button type=\"button\" class=\"btn btn-success btn-smy\" data-toggle=\"modal\" data-target=\"#exampleModal".$row["id_reserva"]."\">\n"; 
-								echo "Abonar <span class=\"fas fa-plus-circle\"></span>\n"; 
+								echo "<p><button type=\"button\" class=\"btn btn-success btn-smy\" data-toggle=\"modal\" data-target=\"#exampleModal".$row["id_reserva"]."\">\n";
+								echo "Abonar <span class=\"fas fa-plus-circle\"></span>\n";
 								echo "</button></p>\n";
 								echo "  </div>\n";
 								echo "</div>\n";
 								echo "&nbsp;";
-								
-								
+
+
 
 							}
             //echo "</div>\n";
 							echo "</div>\n";
 						} else {
-							echo "<div class=\"jumbotron jumbotron-fluid\">\n"; 
-							echo "  <div class=\"container\">\n"; 
-							echo "    <h1>¡Aun no tienes viajes!</h1> \n"; 
+							echo "<div class=\"jumbotron jumbotron-fluid\">\n";
+							echo "  <div class=\"container\">\n";
+							echo "    <h1>¡Aun no tienes viajes!</h1> \n";
 
-							echo "<input type=\"button\" \n"; 
-							echo "       id=\"secondaryButton\" \n"; 
+							echo "<input type=\"button\" \n";
+							echo "       id=\"secondaryButton\" \n";
 							echo "       onclick=\"document.getElementById('btnClick').click()\" class=\"btn btn-lg btn-outline-primary\" value=\"Buscar viajes\"/>\n";
-							echo "  </div>\n"; 
+							echo "  </div>\n";
 							echo "&nbsp;";
 						}
 
@@ -219,48 +220,48 @@ if (isset($_SESSION['email'])){
 
 									while($row = $result->fetch_assoc()) {
 										if ($row["activo"]=='0') {
-                          /*echo " <div class=\"col-md-4 col-sm-6 portfolio-item\">\n"; 
-                          echo "                  <a class=\"portfolio-link\" data-toggle=\"modal\" href=\"#portfolioModal1\">\n"; 
-                          echo "                    <div class=\"portfolio-hover\">\n"; 
-                          echo "                      <div class=\"portfolio-hover-content\">\n"; 
-                          
-                          echo "                      </div>\n"; 
-                          echo "                    </div>\n"; 
-                          echo "                    <img class=\"img-fluid\" src=\"../img/portfolio/06-thumbnail.jpg\" alt=\"\">\n"; 
-                          echo "                  </a>\n"; 
-                          echo "                  <div class=\"portfolio-caption\">\n"; 
+                          /*echo " <div class=\"col-md-4 col-sm-6 portfolio-item\">\n";
+                          echo "                  <a class=\"portfolio-link\" data-toggle=\"modal\" href=\"#portfolioModal1\">\n";
+                          echo "                    <div class=\"portfolio-hover\">\n";
+                          echo "                      <div class=\"portfolio-hover-content\">\n";
+
+                          echo "                      </div>\n";
+                          echo "                    </div>\n";
+                          echo "                    <img class=\"img-fluid\" src=\"../img/portfolio/06-thumbnail.jpg\" alt=\"\">\n";
+                          echo "                  </a>\n";
+                          echo "                  <div class=\"portfolio-caption\">\n";
                           echo "                    <h4>".$row["titulo"]."</h4>\n";
                           $sql2 = "SELECT min(precio) as precio FROM paquetes WHERE id_viaje='".$row["id_viaje"]."'";
                           $result2 = $conn->query($sql2);
 
                           if ($result2->num_rows >= 1) {
-                            
+
                               while($row2 = $result2->fetch_assoc()) {
-                                echo "                    <p class=\"text-muted\">Desde: $".$row2["precio"]."</p>\n"; 
-                               
+                                echo "                    <p class=\"text-muted\">Desde: $".$row2["precio"]."</p>\n";
+
                               }
                           } else {
-                             
+
                           }
                           echo "                    <p class=\"text-muted\">¡Proximamente!</p>\n";
-                          echo "                  </div>\n"; 
+                          echo "                  </div>\n";
                           echo "                </div>\n";*/
                       }else{
-                      	echo " <div class=\"col-md-4 col-sm-6 portfolio-item\">\n"; 
-                      	echo "                  <a class=\"portfolio-link\" data-toggle=\"modal\" href=\"#portfolioModal1\">\n"; 
-                      	echo "                    <div class=\"portfolio-hover\">\n"; 
-                      	echo "                      <div class=\"portfolio-hover-content\">\n"; 
+                      	echo " <div class=\"col-md-4 col-sm-6 portfolio-item\">\n";
+                      	echo "                  <a class=\"portfolio-link\" data-toggle=\"modal\" href=\"#portfolioModal1\">\n";
+                      	echo "                    <div class=\"portfolio-hover\">\n";
+                      	echo "                      <div class=\"portfolio-hover-content\">\n";
 
-                      	echo "                      </div>\n"; 
-                      	echo "                    </div>\n"; 
+                      	echo "                      </div>\n";
+                      	echo "                    </div>\n";
                       	if ($row["id_viaje"] == '2') {
-                      		echo "                    <img class=\"img-fluid\" src=\"../img/portfolio/06-thumbnail.jpg\" alt=\"\">\n"; 
+                      		echo "                    <img class=\"img-fluid\" src=\"../img/portfolio/06-thumbnail.jpg\" alt=\"\">\n";
                       	}else{
-                      		echo "                    <img class=\"img-fluid\" src=\"../img/portfolio/02-thumbnail.jpg\" alt=\"\">\n"; 
+                      		echo "                    <img class=\"img-fluid\" src=\"../img/portfolio/02-thumbnail.jpg\" alt=\"\">\n";
                       	}
 
-                      	echo "                  </a>\n"; 
-                      	echo "                  <div class=\"portfolio-caption\">\n"; 
+                      	echo "                  </a>\n";
+                      	echo "                  <div class=\"portfolio-caption\">\n";
                       	echo "                    <h4>".$row["titulo"]."</h4>\n";
                       	$sql2 = "SELECT min(precio) as precio FROM paquetes WHERE id_viaje='".$row["id_viaje"]."'";
                       	$result2 = $conn->query($sql2);
@@ -268,18 +269,18 @@ if (isset($_SESSION['email'])){
                       	if ($result2->num_rows >= 1) {
 
                       		while($row2 = $result2->fetch_assoc()) {
-                      			echo "                    <p class=\"text-muted\">Desde: $".number_format($row2["precio"])."</p>\n"; 
+                      			echo "                    <p class=\"text-muted\">Desde: $".number_format($row2["precio"])."</p>\n";
 
                       		}
                       	} else {
 
                       	}
-                      	echo "<form action=\"new_reservation/\" method=\"post\">\n"; 
-                      	echo "  <input type=\"hidden\"  name=\"viajesito\" value=\"".$row["id_viaje"]."\">\n"; 
+                      	echo "<form action=\"new_reservation/\" method=\"post\">\n";
+                      	echo "  <input type=\"hidden\"  name=\"viajesito\" value=\"".$row["id_viaje"]."\">\n";
                       	echo "<button class=\"btn btn-sm btn-outline-primary\" type=\"submit\">Ver paquetes <span class=\"fas fa-magic\"></span></button>\n";
                       	echo "</form>\n";
 
-                      	echo "                  </div>\n"; 
+                      	echo "                  </div>\n";
                       	echo "                </div>\n";
                       }
 
@@ -287,14 +288,14 @@ if (isset($_SESSION['email'])){
 
                   }
               } else {
-              	echo "<div class=\"jumbotron jumbotron-fluid\">\n"; 
-              	echo "  <div class=\"container\">\n"; 
-              	echo "    <h1>¡Aun no tienes viajes!</h1> \n"; 
+              	echo "<div class=\"jumbotron jumbotron-fluid\">\n";
+              	echo "  <div class=\"container\">\n";
+              	echo "    <h1>¡Aun no tienes viajes!</h1> \n";
 
-              	echo "<input type=\"button\" \n"; 
-              	echo "       id=\"secondaryButton\" \n"; 
+              	echo "<input type=\"button\" \n";
+              	echo "       id=\"secondaryButton\" \n";
               	echo "       onclick=\"document.getElementById('btnClick').click()\" class=\"btn btn-lg btn-outline-primary\" value=\"Buscar viajes\"/>\n";
-              	echo "  </div>\n"; 
+              	echo "  </div>\n";
               	echo "</div>\n";
               }
 
@@ -310,8 +311,8 @@ if (isset($_SESSION['email'])){
 </div>
 </div>
 <?php
-$sqld = "SELECT reservas.abonado, reservas.pagado, paquetes.precio, paquetes.id_viaje, reservas.id_reserva, viajes.titulo FROM reservas 
-						INNER JOIN paquetes ON reservas.id_paquete = paquetes.id_paquete 
+$sqld = "SELECT reservas.abonado, reservas.pagado, paquetes.precio, paquetes.id_viaje, reservas.id_reserva, viajes.titulo FROM reservas
+						INNER JOIN paquetes ON reservas.id_paquete = paquetes.id_paquete
 						LEFT JOIN viajes ON paquetes.id_viaje = viajes.id_viaje
 						WHERE reservas.email='".$mail."'";
 $resultd = $conn->query($sqld);
@@ -331,31 +332,31 @@ if ($resultd->num_rows > 0) {
                       </div>
                       <div class="modal-body">
                         <p>Elige tu metodo de pago:</p>
-                        <?php echo "  <input type=\"hidden\" id=\"titulo".$rowd["id_reserva"]."\" value=\"".$rowd["titulo"]."\">\n";  
-                        echo "  <input type=\"hidden\" id=\"reserva".$rowd["id_reserva"]."\" value=\"".$rowd["id_reserva"]."\">\n";  
+                        <?php echo "  <input type=\"hidden\" id=\"titulo".$rowd["id_reserva"]."\" value=\"".$rowd["titulo"]."\">\n";
+                        echo "  <input type=\"hidden\" id=\"reserva".$rowd["id_reserva"]."\" value=\"".$rowd["id_reserva"]."\">\n";
                          echo "<button type=\"button\" class=\"btn btn-lg px-5 btn-light\" id=\"btnSave".$rowd["id_reserva"]."\" data-toggle=\"modal\" data-target=\"#Tarjetamodal\">\n";
-                        echo "<script type=\"text/javascript\">\n"; 
-						echo "  $(function() {\n"; 
-						echo "    $('#btnSave".$rowd["id_reserva"]."').click(function() {\n"; 
-						echo "      var value = $('#titulo".$rowd["id_reserva"]."').val();\n"; 
-						echo "      var value2 = $('#reserva".$rowd["id_reserva"]."').val();\n"; 
-						echo "      $('#cambioH1').html(value);\n"; 
-						echo "      $('#id_reserva_modal').val(value2);\n"; 
-						echo "    });\n"; 
-						echo "  });\n"; 
+                        echo "<script type=\"text/javascript\">\n";
+						echo "  $(function() {\n";
+						echo "    $('#btnSave".$rowd["id_reserva"]."').click(function() {\n";
+						echo "      var value = $('#titulo".$rowd["id_reserva"]."').val();\n";
+						echo "      var value2 = $('#reserva".$rowd["id_reserva"]."').val();\n";
+						echo "      $('#cambioH1').html(value);\n";
+						echo "      $('#id_reserva_modal').val(value2);\n";
+						echo "    });\n";
+						echo "  });\n";
 						echo "</script>\n"; ?>
                                 <img src="img/tarjetas.png" height="60" alt="USA flag">
                             </button>&nbsp;
-                            <?php echo "<button type=\"button\" id=\"btnSave2".$rowd["id_reserva"]."\" class=\"btn btn-lg px-5 btn-light\" data-toggle=\"modal\" data-target=\"#Oxxomodal\">\n"; 
-                             echo "<script type=\"text/javascript\">\n"; 
-						echo "  $(function() {\n"; 
-						echo "    $('#btnSave2".$rowd["id_reserva"]."').click(function() {\n"; 
-						echo "      var value = $('#titulo".$rowd["id_reserva"]."').val();\n"; 
-						echo "      var value2 = $('#reserva".$rowd["id_reserva"]."').val();\n"; 
-						echo "      $('#cambioH2').html(value);\n"; 
-						echo "      $('#id_reserva_modal2').val(value2);\n"; 
-						echo "    });\n"; 
-						echo "  });\n"; 
+                            <?php echo "<button type=\"button\" id=\"btnSave2".$rowd["id_reserva"]."\" class=\"btn btn-lg px-5 btn-light\" data-toggle=\"modal\" data-target=\"#Oxxomodal\">\n";
+                             echo "<script type=\"text/javascript\">\n";
+						echo "  $(function() {\n";
+						echo "    $('#btnSave2".$rowd["id_reserva"]."').click(function() {\n";
+						echo "      var value = $('#titulo".$rowd["id_reserva"]."').val();\n";
+						echo "      var value2 = $('#reserva".$rowd["id_reserva"]."').val();\n";
+						echo "      $('#cambioH2').html(value);\n";
+						echo "      $('#id_reserva_modal2').val(value2);\n";
+						echo "    });\n";
+						echo "  });\n";
 						echo "</script>\n";
                             ?>
                                 <img src="img/oxxo.png" height="60" alt="USA flag">
@@ -364,8 +365,8 @@ if ($resultd->num_rows > 0) {
                     </div>
                   </div>
                 </div>
-                <?php } 
-   
+                <?php }
+
 } else {
     echo "0 results";
 }?>
@@ -375,12 +376,12 @@ if ($resultd->num_rows > 0) {
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <h5 class="modal-title" id="cambioH1">Pago con Tarjeta</h5>
-		        
-		          <button type="button" class="btn btn-link text-dark" data-toggle="tooltip" data-placement="left" title="Estamos respaldados por un equipo de expertos para combatir fraudes. Contamos con las 
+
+		          <button type="button" class="btn btn-link text-dark" data-toggle="tooltip" data-placement="left" title="Estamos respaldados por un equipo de expertos para combatir fraudes. Contamos con las
 soluciones más avanzadas y el mayor radar de detección de malversaciones a nivel mundial.">
 					  <i class="fas fa-lock"></i>
 					</button>
-		        
+
 		      </div>
 		      <div class="modal-body">
 		        <form action="pay.php" method="POST" id="card-form">
@@ -391,7 +392,7 @@ soluciones más avanzadas y el mayor radar de detección de malversaciones a niv
 					  </div>
 				  </div>
 				  <span class="card-errors text-danger"></span><br>
-				 
+
 				 <div class="form-group">
 				    <label for="exampleInputEmail1">Nombre que aparece en tarjeta: <button type="button" class="btn btn-link btn-sm" data-toggle="tooltip" data-html="true" title="<img src=&quot;tarjeta_nombre.png&quot;>"><i class="fas fa-question-circle"></i></button></label>
 				    <input type="hidden" name="reserva" id="id_reserva_modal" value="">
@@ -450,19 +451,19 @@ soluciones más avanzadas y el mayor radar de detección de malversaciones a niv
 		    </div>
 		  </div>
 		</div>
-    	
+
 
     	<div class="modal fade" id="Oxxomodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog modal-lg" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <h5 class="modal-title" id="cambioH2">Oxxo Pay</h5>
-		        
-		          <button type="button" class="btn btn-link text-dark" data-toggle="tooltip" data-placement="left" title="Estamos respaldados por un equipo de expertos para combatir fraudes. Contamos con las 
+
+		          <button type="button" class="btn btn-link text-dark" data-toggle="tooltip" data-placement="left" title="Estamos respaldados por un equipo de expertos para combatir fraudes. Contamos con las
 soluciones más avanzadas y el mayor radar de detección de malversaciones a nivel mundial.">
 					  <i class="fas fa-lock"></i>
 					</button>
-		        
+
 		      </div>
 		      <div class="modal-body">
 		        <form action="oxxo_pay/" method="POST" >
@@ -473,7 +474,7 @@ soluciones más avanzadas y el mayor radar de detección de malversaciones a niv
 					    <input type="hidden" name="reserva" id="id_reserva_modal2" value="">
 					  </div>
 				  </div>
-				 
+
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Atras</button>
@@ -500,7 +501,7 @@ soluciones más avanzadas y el mayor radar de detección de malversaciones a niv
 </script>
 <script type="text/javascript">
   Conekta.setPublicKey('key_Lc3mLsmPDnNJsv5zYhzAkjA');
-  
+
 
   var conektaSuccessResponseHandler = function(token) {
     var $form = $("#card-form");

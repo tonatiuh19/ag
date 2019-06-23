@@ -1,9 +1,63 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+
+require '../mailer/src/Exception.php';
+require '../mailer/src/PHPMailer.php';
+require '../mailer/src/SMTP.php';
+
+//require_once('mailer/src/autoload.php');
+session_start();
+require_once('../cn.php');
+
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$reserva = $_POST["reserva"];
 	$referencia = $_POST["referencia"];
 	$nombre = $_POST["nombre"];
 	$correo = $_POST["correo"];
+
+
+	$mail = new PHPMailer(true);
+
+	try {
+			//Server settings
+		 $mail->SMTPDebug = 2;                                       // Enable verbose debug output
+		 // $mail->isSMTP();                                            // Set mailer to use SMTP
+			$mail->Host       = 'mail.agustirri.com';  // Specify main and backup SMTP servers
+			$mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+			$mail->Username   = 'tg@agustirri.com';                     // SMTP username
+			$mail->Password   = 'tonatiuh19';                               // SMTP password
+			$mail->SMTPSecure = 'ssl';                                  // Enable TLS encryption, `ssl` also accepted
+			$mail->Port       = 469;                                    // TCP port to connect to
+
+
+			//Recipients
+			$mail->setFrom('noreply@agustirri.com', 'Confirmacion de Pago Agustirri: '.$reserva.'');
+			$mail->addAddress(''.$correo.'', ''.$nombre.'');     // Add a recipient
+
+			$mail->addReplyTo('ayuda@agustirri.com', 'Informacion de Pagos');
+			//$mail->addCC('cc@example.com');
+			//$mail->addBCC('bcc@example.com');
+
+			// Attachments
+			//$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+			//$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+
+			// Content
+			$mail->isHTML(true);                                  // Set email format to HTML
+			$mail->Subject = 'Tu pago ha sido procesado con la siguiente referencia: '.$referencia.'';
+			$mail->Body    = '<p>¡Hola '.$nombre.'!</p> <p>Tu referencia de pago es la siguiente: '.$referencia.'.</p><p>Adjunto podras encontrar tu ticket.</p> <p>Saludos cordiales.<br>Equipo Agustirri. <br>ayuda@agustirri.com</p>';
+			$mail->AltBody = 'Bienvenido';
+
+			$mail->send();
+
+	} catch (Exception $e) {
+			echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+	}
+
 
 ?>
 <!doctype html>
@@ -28,12 +82,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <body>
 
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="#"><img src="../../img/logo.png" class="img-responsive" style="width:18%"></a>
+      <!--<a class="navbar-brand" href="#"><img src="../img/logo.png" class="img-responsive" style="width:18%"></a>-->
+			<a class="navbar-brand col-sm-3 col-md-2 mr-0" href="../"><img src="../img/logo.png" class="img-responsive" style="width:18%"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      
+
     </nav>
 
     <main role="main">
@@ -98,7 +153,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </body>
 </html>
 
-<?php  
+<?php
 }
 else{
 	echo ("<SCRIPT LANGUAGE='JavaScript'>

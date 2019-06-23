@@ -34,7 +34,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="img/logo1.png" class="img-responsive" style="width:8%"></a>
+      <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="img/logo3.png" class="img-responsive" style="width:4%"></a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fa fa-bars"></i>
@@ -43,11 +43,11 @@
         <ul class="navbar-nav text-uppercase ml-auto">
 
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#portfolio">Viajes</a>
+            <a class="nav-link js-scroll-trigger" style="font-size: 75%" href="#portfolio">Viajes</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" style="width:8%" href="tuviaje/">Publica un viaje</a>
+            <a class="nav-link js-scroll-trigger" style="font-size: 75%" href="tuviaje/">Publica un viaje</a>
           </li>
 
           <li class="nav-item">
@@ -180,7 +180,15 @@
           echo "          </div>\n";
         }
       } else {
-        echo "0 results";
+        echo "<div class=\"jumbotron\">\n"; 
+		echo "  <h1 class=\"display-4\">¡Aqui va tu viaje!</h1>\n"; 
+		echo "  <p class=\"lead\">Empieza a ganar dinero diviertiendote.</p>\n"; 
+		echo "  <hr class=\"my-4\">\n"; 
+		
+		echo "  <p class=\"lead\">\n"; 
+		echo "    <a class=\"btn btn-primary btn-lg\" href=\"tuviaje/\" role=\"button\">Publicar viaje</a>\n"; 
+		echo "  </p>\n"; 
+		echo "</div>\n";
       }
 
       ?>
@@ -578,7 +586,7 @@
               $num++;
             }
           } else {
-            echo "0 results";
+            //echo "0 results";
           }
 
 
@@ -622,7 +630,7 @@
           echo "    </div>\n";
         }
       } else {
-        echo "0 results";
+        //echo "0 results";
       }
       ?>
 

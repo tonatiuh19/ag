@@ -9,14 +9,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $name = $_POST["conektaTokenId"];
   $monto = $_POST["monto"]*100;
   $reserva = $_POST["reserva"];
-  
+
 }
 else{
 	echo ("<SCRIPT LANGUAGE='JavaScript'>
-   
+
     window.location.href='../';
     </SCRIPT>");
-   
+
   }
 
 
@@ -39,13 +39,13 @@ if ($result->num_rows > 0) {
                     "quantity" => 1
                   )//first line_item
                 ), //line_items
-                
+
                 "currency" => "MXN",
                 "customer_info" => array(
                   "name" => "".$nombreA."" ,
                   "email" => $correo,
                   "phone" => $row["telefono"]
-                ), 
+                ),
                 "metadata" => array("reference" => "12987324097", "more_info" => "lalalalala"),
                 "charges" => array(
                     array(
@@ -73,10 +73,10 @@ if ($result->num_rows > 0) {
 
           if ($val == 1) {
                 echo "<form action=\"../dashboard/sorry/\" id=\"my_form\" method=\"post\">\n";
-                echo "  <input type=\"hidden\" name=\"error\" value=\"".$error->getMessage()."\">\n";  
+                echo "  <input type=\"hidden\" name=\"error\" value=\"".$error->getMessage()."\">\n";
                 echo "<input type='submit' name='btnSignIn' value='Cargando...' id='btnSignIn' />\n";
                 echo "</form>\n";
-                echo "<script type=\"text/javascript\">\n"; 
+                echo "<script type=\"text/javascript\">\n";
                 echo "    document.getElementById('btnSignIn').click();\n";
                 echo "</script>\n"; 
           }else if($val == 0){
@@ -102,15 +102,15 @@ if ($result->num_rows > 0) {
 
             if ($conn->query($sql) === TRUE) {
                 echo "<form action=\"../dashboard/success/\" id=\"my_form\" method=\"post\">\n";
-                echo "  <input type=\"hidden\" name=\"reserva\" value=\"".$reserva."\">\n";  
-                echo "  <input type=\"hidden\" name=\"referencia\" value=\"".$order->id."\">\n";  
+                echo "  <input type=\"hidden\" name=\"reserva\" value=\"".$reserva."\">\n";
+                echo "  <input type=\"hidden\" name=\"referencia\" value=\"".$order->id."\">\n";
                 echo "  <input type=\"hidden\" name=\"nombre\" value=\"".$nombreA."\">\n";
-                echo "  <input type=\"hidden\" name=\"correo\" value=\"".$correo."\">\n";    
+                echo "  <input type=\"hidden\" name=\"correo\" value=\"".$correo."\">\n";
                 echo "<input type='submit' name='btnSignIn' value='Cargando...' id='btnSignIn' />\n";
                 echo "</form>\n";
-                echo "<script type=\"text/javascript\">\n"; 
+                echo "<script type=\"text/javascript\">\n";
                 echo "    document.getElementById('btnSignIn').click();\n";
-                echo "</script>\n"; 
+                echo "</script>\n";
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
@@ -126,8 +126,3 @@ if ($result->num_rows > 0) {
 
 
   ?>
-
-
-
-
-

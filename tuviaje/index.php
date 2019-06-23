@@ -76,7 +76,7 @@
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="site-heading">
               <h1>Publica tu viaje</h1>
-              <span class="subheading">¿Tienes una agencia de viajes?</span>
+              <span class="subheading">¿Tienes una agencia de viajes o eres un experto en organizar viajes?</span>
             </div>
           </div>
         </div>
@@ -104,7 +104,7 @@
             <div class="team-member">
               <h4 id="inner"><span class="far fa-hand-point-right fa-5x"></span></h4>
               <p><h4>Invita a tu audiencia</h4>
-              <span class="text-muted">Comparte el viaje por redes sociales.</span></p>
+              <span class="text-muted">Comparte el viaje por redes sociales y recibe pagos por los mejores medios (Oxxo, meses sin intereses, etc).</span></p>
               
             </div>
           </div>
