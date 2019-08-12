@@ -142,7 +142,7 @@
       .whatever-your-class2{
         width:100%;
         height:300px
-        
+
       }
     </style>
     <?php
@@ -155,39 +155,39 @@
               // output data of each row
       while($row = $result->fetch_assoc()) {
         $trips[] = $row["id_viaje"];
-        echo "<div class=\"col-md-4 col-sm-6 portfolio-item\">\n"; 
-        echo "            <a class=\"portfolio-link\" data-toggle=\"modal\" href=\"#portfolioModal".$row["id_viaje"]."\">\n"; 
-        echo "              <div class=\"portfolio-hover\">\n"; 
-        echo "                <div class=\"portfolio-hover-content\">\n"; 
-        echo "                  <i class=\"fa fa-plus fa-3x\"></i>\n"; 
-        echo "                </div>\n"; 
-        echo "              </div>\n"; 
-        $thumbs = glob("trips/".$row["id_viaje"]."/principal/*.{jpg,png,gif,JPG,PNG}", GLOB_BRACE); 
+        echo "<div class=\"col-md-4 col-sm-6 portfolio-item\">\n";
+        echo "            <a class=\"portfolio-link\" data-toggle=\"modal\" href=\"#portfolioModal".$row["id_viaje"]."\">\n";
+        echo "              <div class=\"portfolio-hover\">\n";
+        echo "                <div class=\"portfolio-hover-content\">\n";
+        echo "                  <i class=\"fa fa-plus fa-3x\"></i>\n";
+        echo "                </div>\n";
+        echo "              </div>\n";
+        $thumbs = glob("trips/".$row["id_viaje"]."/principal/*.{jpg,png,gif,JPG,PNG}", GLOB_BRACE);
         if(count($thumbs)) {
           natcasesort($thumbs);
           foreach($thumbs as $thumb) {
-            echo "              <img class=\"img-fluid whatever-your-class\" src=\"".$thumb."\" style=\"width:100%\" >\n"; 
+            echo "              <img class=\"img-fluid whatever-your-class\" src=\"".$thumb."\" style=\"width:100%\" >\n";
 
           }} else {
             echo "Sorry, no images to display!";
           }
 
-          echo "            </a>\n"; 
-          echo "            <div class=\"portfolio-caption\">\n"; 
-          echo "              <h4>".$row["titulo"]."</h4>\n"; 
-          echo "              <p class=\"text-muted\">Desde $".number_format($row["precio"])."</p>\n"; 
-          echo "            </div>\n"; 
+          echo "            </a>\n";
+          echo "            <div class=\"portfolio-caption\">\n";
+          echo "              <h4>".$row["titulo"]."</h4>\n";
+          echo "              <p class=\"text-muted\">Desde $".number_format($row["precio"])."</p>\n";
+          echo "            </div>\n";
           echo "          </div>\n";
         }
       } else {
-        echo "<div class=\"jumbotron\">\n"; 
-		echo "  <h1 class=\"display-4\">¡Aqui va tu viaje!</h1>\n"; 
-		echo "  <p class=\"lead\">Empieza a ganar dinero diviertiendote.</p>\n"; 
-		echo "  <hr class=\"my-4\">\n"; 
-		
-		echo "  <p class=\"lead\">\n"; 
-		echo "    <a class=\"btn btn-primary btn-lg\" href=\"tuviaje/\" role=\"button\">Publicar viaje</a>\n"; 
-		echo "  </p>\n"; 
+        echo "<div class=\"jumbotron\">\n";
+		echo "  <h1 class=\"display-4\">¡Aqui va tu viaje!</h1>\n";
+		echo "  <p class=\"lead\">Empieza a ganar dinero diviertiendote.</p>\n";
+		echo "  <hr class=\"my-4\">\n";
+
+		echo "  <p class=\"lead\">\n";
+		echo "    <a class=\"btn btn-primary btn-lg\" href=\"tuviaje/\" role=\"button\">Publicar viaje</a>\n";
+		echo "  </p>\n";
 		echo "</div>\n";
       }
 
@@ -520,38 +520,38 @@
     <!-- Modal 1 --><?php
     $sql = "SELECT * FROM viajes where activo=1";
     $result = $conn->query($sql);
-    
+
     if ($result->num_rows > 0) {
               // output data of each row
       while($row = $result->fetch_assoc()) {
-        echo "<div class=\"portfolio-modal modal fade\" id=\"portfolioModal".$row["id_viaje"]."\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\n"; 
-        echo "      <div class=\"modal-dialog\">\n"; 
-        echo "        <div class=\"modal-content\">\n"; 
-        echo "          <div class=\"close-modal\" data-dismiss=\"modal\">\n"; 
-        echo "            <div class=\"lr\">\n"; 
-        echo "              <div class=\"rl\"></div>\n"; 
-        echo "            </div>\n"; 
-        echo "          </div>\n"; 
-        echo "          <div class=\"container\">\n"; 
-        echo "            <div class=\"row\">\n"; 
-        echo "              <div class=\" mx-auto\">\n"; 
-        echo "                <div class=\"modal-body\">\n"; 
-        echo "                  <!-- Project Details Go Here -->\n"; 
-        echo "                  <h2 class=\"text-uppercase\">".$row["titulo"]."</h2>\n"; 
-        echo "                  <p><b>Desde:</b> ".$row["origen"]."</p>\n"; 
-        $thumbs = glob("trips/".$row["id_viaje"]."/principal/*.{jpg,png,gif,JPG,PNG}", GLOB_BRACE); 
+        echo "<div class=\"portfolio-modal modal fade\" id=\"portfolioModal".$row["id_viaje"]."\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\n";
+        echo "      <div class=\"modal-dialog\">\n";
+        echo "        <div class=\"modal-content\">\n";
+        echo "          <div class=\"close-modal\" data-dismiss=\"modal\">\n";
+        echo "            <div class=\"lr\">\n";
+        echo "              <div class=\"rl\"></div>\n";
+        echo "            </div>\n";
+        echo "          </div>\n";
+        echo "          <div class=\"container\">\n";
+        echo "            <div class=\"row\">\n";
+        echo "              <div class=\" mx-auto\">\n";
+        echo "                <div class=\"modal-body\">\n";
+        echo "                  <!-- Project Details Go Here -->\n";
+        echo "                  <h2 class=\"text-uppercase\">".$row["titulo"]."</h2>\n";
+        echo "                  <p><b>Desde:</b> ".$row["origen"]."</p>\n";
+        $thumbs = glob("trips/".$row["id_viaje"]."/principal/*.{jpg,png,gif,JPG,PNG}", GLOB_BRACE);
         if(count($thumbs)) {
           natcasesort($thumbs);
           foreach($thumbs as $thumb) {
-            echo "                  <img class=\"img-fluid d-block mx-auto\" src=\"".$thumb."\" alt=\"\">\n"; 
+            echo "                  <img class=\"img-fluid d-block mx-auto\" src=\"".$thumb."\" alt=\"\">\n";
 
           }} else {
             echo "Sorry, no images to display!";
           }
 
 
-          echo "                  <p>".$row["general_descripcion"]."</p>\n"; 
-          echo "                  <div class=\"container\">\n"; 
+          echo "                  <p>".$row["general_descripcion"]."</p>\n";
+          echo "                  <div class=\"container\">\n";
           echo "                    <div class=\"card-deck mb-3 text-center\">\n";
 
           $sql2 = "SELECT id_paquete, fecha_ida, fecha_vuelta, incluido, precio FROM paquetes where id_viaje='".$row["id_viaje"]."'";
@@ -560,18 +560,18 @@
           if ($result2->num_rows > 0) {
             // output data of each row
             while($row2 = $result2->fetch_assoc()) {
-              echo "        <div class=\"card mb-4 box-shadow\">\n"; 
-              echo "          <div class=\"card-header\">\n"; 
-              echo "            <h4 class=\"my-0 font-weight-normal\">Paquete ".$num."</h4>\n"; 
-              echo "          </div>\n"; 
-              echo "          <div class=\"card-body\">\n"; 
-              echo "            <h1 class=\"card-title pricing-card-title\">$".number_format($row2["precio"])." <small class=\"text-muted\">mxn</small></h1>\n"; 
-              echo "            <ul class=\"list-unstyled mt-3 mb-4\">\n"; 
-              echo "              <li><b>Fecha: </b>".$row2["fecha_ida"]." <b>a</b> ".$row2["fecha_vuelta"].".</li>\n"; 
-              echo "              <li>&nbsp;</li>\n"; 
-              echo "              <li><b>¿Que contiene?</b></li>\n"; 
-              echo "              <li>".$row2["incluido"]."</li>\n"; 
-              echo "            </ul>\n"; 
+              echo "        <div class=\"card mb-4 box-shadow\">\n";
+              echo "          <div class=\"card-header\">\n";
+              echo "            <h4 class=\"my-0 font-weight-normal\">Paquete ".$num."</h4>\n";
+              echo "          </div>\n";
+              echo "          <div class=\"card-body\">\n";
+              echo "            <h1 class=\"card-title pricing-card-title\">$".number_format($row2["precio"])." <small class=\"text-muted\">mxn</small></h1>\n";
+              echo "            <ul class=\"list-unstyled mt-3 mb-4\">\n";
+              echo "              <li><b>Fecha: </b>".$row2["fecha_ida"]." <b>a</b> ".$row2["fecha_vuelta"].".</li>\n";
+              echo "              <li>&nbsp;</li>\n";
+              echo "              <li><b>¿Que contiene?</b></li>\n";
+              echo "              <li>".$row2["incluido"]."</li>\n";
+              echo "            </ul>\n";
               if (isset($_SESSION['email'])){
                 echo " <a class=\"btn btn-lg btn-block btn-outline-primary\" href=\"dashboard/\" alt=\"Apartar Lugar\">\n";
                 echo "Apartar Lugar";
@@ -581,8 +581,8 @@
                 echo "Apartar Lugar";
                 echo "</a>\n";
               }
-              echo "          </div>\n"; 
-              echo "        </div>\n"; 
+              echo "          </div>\n";
+              echo "        </div>\n";
               $num++;
             }
           } else {
@@ -590,43 +590,43 @@
           }
 
 
-          echo "</div>\n"; 
+          echo "</div>\n";
 
-          echo "<section class=\"gallery-block compact-gallery\">\n"; 
-          echo "        <div class=\"container\">\n"; 
-          echo "            <div class=\"heading\">\n"; 
-          echo "                <h2>Galeria de imagenes:</h2>\n"; 
-          echo "            </div>\n"; 
-          echo "            <div class=\"row no-gutters\">\n"; 
-          echo "               \n"; 
-          $thumbs2 = glob("trips/".$row["id_viaje"]."/*.{jpg,png,gif,JPG,PNG}", GLOB_BRACE); 
+          echo "<section class=\"gallery-block compact-gallery\">\n";
+          echo "        <div class=\"container\">\n";
+          echo "            <div class=\"heading\">\n";
+          echo "                <h2>Galeria de imagenes:</h2>\n";
+          echo "            </div>\n";
+          echo "            <div class=\"row no-gutters\">\n";
+          echo "               \n";
+          $thumbs2 = glob("trips/".$row["id_viaje"]."/*.{jpg,png,gif,JPG,PNG}", GLOB_BRACE);
         if(count($thumbs2)) {
           natcasesort($thumbs2);
           foreach($thumbs2 as $thumb2) {
-            echo "                <div class=\"col-md-6 col-lg-4 item zoom-on-hover\">\n"; 
-          echo "                    <a class=\"lightbox\" href=\"../img/image2.jpg\">\n"; 
-          echo "                        <img class=\"img-fluid image whatever-your-class2\" src=\"".$thumb2."\">\n"; 
+            echo "                <div class=\"col-md-6 col-lg-4 item zoom-on-hover\">\n";
+          echo "                    <a class=\"lightbox\" href=\"../img/image2.jpg\">\n";
+          echo "                        <img class=\"img-fluid image whatever-your-class2\" src=\"".$thumb2."\">\n";
 
-          echo "                    </a>\n"; 
-          echo "                </div>\n"; 
+          echo "                    </a>\n";
+          echo "                </div>\n";
 
           }} else {
             echo "Sorry, no images to display!";
           }
-          echo "               \n"; 
-          echo "            </div>\n"; 
-          echo "        </div>\n"; 
+          echo "               \n";
+          echo "            </div>\n";
+          echo "        </div>\n";
           echo "    </section>\n";
-          echo "                  </div>\n"; 
-          echo "                  <!--<button class=\"btn btn-primary\" data-dismiss=\"modal\" type=\"button\">\n"; 
-          echo "                    <i class=\"fa fa-times\"></i>\n"; 
-          echo "                    </button>-->\n"; 
-          echo "                </div>\n"; 
-          echo "              </div>\n"; 
-          echo "            </div>\n"; 
-          echo "          </div>\n"; 
-          echo "        </div>\n"; 
-          echo "      </div>\n"; 
+          echo "                  </div>\n";
+          echo "                  <!--<button class=\"btn btn-primary\" data-dismiss=\"modal\" type=\"button\">\n";
+          echo "                    <i class=\"fa fa-times\"></i>\n";
+          echo "                    </button>-->\n";
+          echo "                </div>\n";
+          echo "              </div>\n";
+          echo "            </div>\n";
+          echo "          </div>\n";
+          echo "        </div>\n";
+          echo "      </div>\n";
           echo "    </div>\n";
         }
       } else {

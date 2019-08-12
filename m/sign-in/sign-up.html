@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>Agustirri</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="signin.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  </head>
+
+  <body class="text-center">
+    <form class="form-signin" action="signup.php" method="post">
+      <a href="../"><img class="mb-4" src="../../img/icono.png" alt="" width="72" height="72"></a>
+      <h1 class="h3 mb-3 font-weight-normal">Registro</h1>
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <input type="email" name="mail" id="inputEmail" class="form-control" placeholder="Correo Electronico" required autofocus><br>
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="text" name="nombre" id="inputnombre" class="form-control" placeholder="Nombre(s)" required>
+      <input type="text" name="apellido" id="inputapellido" class="form-control" placeholder="Apellido(s)" required><br>
+      <input type="password" name="pwd" id="password" class="form-control" placeholder="Contraseña" required>
+      <input type="password" name="pwd2" id="confirm_password" class="form-control" placeholder="Repetir contraseña" required>
+      <span id='message'></span>
+      <br>
+      <input type="text" name="phone" id="inputtelefono" class="form-control" placeholder="Telefono (opcional)"> <p></p>
+       <small>Al registrarme acepto terminos y condiciones.</small>
+      <button class="btn btn-lg btn-success btn-block" type="submit">Listo</button>
+
+      <p class="mt-5 mb-3 text-muted">&copy; 2019</p>
+
+    </form>
+    <script type="text/javascript">
+    	var password = document.getElementById("password")
+  , confirm_password = document.getElementById("confirm_password");
+
+function validatePassword(){
+  if(password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Las contraseñas no coinciden");
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
+
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
+    </script>
+  </body>
+</html>
